@@ -43,3 +43,21 @@ export async function getValidSpotifyAccessToken() {
     // User is logged out
     return null;
 }
+
+// For API endpoints that don't require a user to be logged in
+export async function getGuestSpotifyAccessToken() {
+    const authHeader = (Buffer.from(`${CLIENT_ID}:${CLIENT_SECRET}`).toString('base64'));
+    
+    const res = await fetch('https://accounts.spotify.com/api/token', {
+        method: 'POST',
+        headers: {
+            Authorization: `Basic ${authHeader}`, 
+            'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: new URLSearchParams({
+            grant_type: 'client_credentials',
+        })
+    });
+    
+    return res.json();
+}
