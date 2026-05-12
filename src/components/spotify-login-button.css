@@ -1,0 +1,17 @@
+.spotify-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    width: 250px;
+    padding: 8px 12px;
+    background-color: var(--spotify-green);
+    border-color: transparent;
+    border-radius: 5px;
+}
+.spotify-logo {
+    margin-right: auto;
+}
+.spotify-btn span {
+    margin-right: auto;
+}
