@@ -1,11 +1,11 @@
 // Handle response after Spotify authenticates the user
 import { NextRequest, NextResponse } from 'next/server';
 
-const HOST = process.env.HOST!;
-const PORT = process.env.PORT!;
 const CLIENT_ID = process.env.CLIENT_ID!;
 const CLIENT_SECRET = process.env.CLIENT_SECRET!;
 const REDIRECT_URI = process.env.REDIRECT_URI!;
+const HOST = process.env.HOST!;
+const PORT = process.env.PORT!;
 
 // Called automatically by Spotify/routes here after auth
 export async function GET(req: NextRequest) {

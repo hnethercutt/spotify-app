@@ -13,9 +13,9 @@ export async function GET() {
   const params = new URLSearchParams({
     response_type: 'code',
     client_id: CLIENT_ID,
-    scope,
+    scope: scope,
     redirect_uri: REDIRECT_URI,
-    state,
+    state: state,
     show_dialog: 'true',
   });
   // Spotify login page
