@@ -1,5 +1,5 @@
 // Handle response after Spotify authenticates the user
-import { NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
 
 const HOST = process.env.HOST!;
 const PORT = process.env.PORT!;
@@ -8,7 +8,7 @@ const CLIENT_SECRET = process.env.CLIENT_SECRET!;
 const REDIRECT_URI = process.env.REDIRECT_URI!;
 
 // Called automatically by Spotify/routes here after auth
-export async function GET(req: Request) {
+export async function GET(req: NextRequest) {
     // Read return query params from spotify redirect URL
     const { searchParams } = new URL(req.url);
 
