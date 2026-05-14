@@ -5,7 +5,9 @@ import { getGuestSpotifyAccessToken } from '@/lib/spotifyAuth';
 
 export async function GET(req: NextRequest) {
   const searchParams = req.nextUrl.searchParams;
+  // Pulls out the users input/the search term
   const query = searchParams.get('q');
+  // Searching for songs doesn't required an authenticated user
   const token = await getGuestSpotifyAccessToken();
 
   if (query) {

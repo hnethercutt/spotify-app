@@ -17,6 +17,7 @@ export default function SpotifySearchBar() {
   >([]);
 
   useEffect(() => {
+    // Wait a couple seconds while the user types in their search before making the API call
     const timer = setTimeout(async () => {
       if (searchTerm) {
         try {
@@ -24,6 +25,7 @@ export default function SpotifySearchBar() {
             `/api/search?q="${encodeURIComponent(searchTerm)}"`
           );
           await res.json().then(function (_searchResult) {
+            // Add a search result object to the array for each result item (each song)
             let formattedResults = _.map(
               _searchResult.items,
               (_searchResultItem) => ({
@@ -35,19 +37,21 @@ export default function SpotifySearchBar() {
               })
             );
             setSearchResults(formattedResults);
-            console.log(formattedResults);
           });
         } catch (err) {
           console.error('Error retrieving search results', err);
         }
+      // User either never typed anything in or erased all of what they had, so we want to clear the results
       } else {
         setSearchResults([]);
       }
     }, 200);
 
+    // Clear the timer if the user finishes typing
     return () => clearTimeout(timer);
   }, [searchTerm]);
 
+  // Dynamically update the current search term as the user types into the search bar
   const updateSearchTerm = (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
     setSearchTerm(e.target.value);
@@ -61,6 +65,7 @@ export default function SpotifySearchBar() {
           placeholder="Search for a song.."
           value={searchTerm}
           onChange={updateSearchTerm}
+          // Hide search results after clicking away
           onBlur={() => {
             setSearchResults([]);
           }}
