@@ -1,0 +1,56 @@
+.search-bar-container {
+  padding: 25px;
+  height: 500px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.search-bar-container input {
+  width: 450px;
+  height: 45px;
+  border-radius: 25px;
+  text-indent: 15px;
+  background-color: var(--spotify-dark-grey);
+}
+.search-bar-container input:hover {
+  background-color: var(--spotify-grey);
+}
+.search-bar-container input:focus {
+  outline: none;
+  border: 2px solid #fff;
+}
+.search-results-container {
+  width: 450px;
+  height: 455px;
+  text-wrap: wrap;
+  padding: 8px;
+  margin-top: 5px;
+  background-color: var(--spotify-grey);
+  border-radius: 8px;
+  overflow: scroll;
+}
+.search-result {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+.search-result:hover {
+  background-color: var(--spotify-light-grey);
+  border-radius: 8px;
+}
+.cover-art {
+  padding: 12px;
+}
+.result-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.track-name {
+  font-size: 16px;
+  font-weight: 600;
+}
+.artist-name {
+  font-size: 14px;
+  color: var(--spotify-grey-text);
+}
