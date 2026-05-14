@@ -1,15 +1,11 @@
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-  --spotify-green: #1ED760;
-  --spotify-black: #121212;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --background: #121212;
+  --foreground: #fff;
+  --spotify-green: #1ed760;
+  --spotify-dark-grey: #212121;
+  --spotify-grey: #2a2a2a;
+  --spotify-light-grey: #3f3f3f;
+  --spotify-grey-text: #b3b3b3;
 }
 
 html,
