@@ -1,5 +1,4 @@
 // Search for tracks
-'use server';
 import { NextRequest, NextResponse } from 'next/server';
 import { getGuestSpotifyAccessToken } from '@/lib/spotifyAuth';
 
