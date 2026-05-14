@@ -12,7 +12,6 @@ export async function GET(req: NextRequest) {
     const params = new URLSearchParams({
       q: query,
       type: 'track',
-      limit: '5',
     });
 
     const res = await fetch(
