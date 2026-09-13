@@ -1,31 +1,58 @@
 'use client';
 import { useState } from 'react';
+import type { PlaylistRequest } from '@/types/playlist';
 
 export default function GeneratePlaylistForm() {
+  const [requestFormData, setRequestFormData] = useState<PlaylistRequest>({
+    vibe: '',
+    notes: '',
+    referenceSongs: [],
+    languages: [],
+    excludeArtists: [],
+    excludeGenres: [],
+    popularity: 'balanced',
+    allowDuplicateArtists: true,
+    includeReferenceSongs: true,
+    generateTitleAndDescription: true,
+    songCount: 25,
+  });
+
   const [formInput, setFormInput] = useState('');
 
-  // This will be used for playlist generation, but currently just console logs ai response to whatever a user types in the form
-  const generateBtnClicked = async(e: React.SubmitEvent<HTMLFormElement>) => {
+  const generateBtnClicked = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     const res = await fetch('/api/generate', {
       method: 'POST',
-      body: JSON.stringify({prompt: formInput})
+      body: JSON.stringify({ prompt: formInput }),
     });
     const result = await res.json();
     console.log(result.output);
-  }
+  };
 
   const updateFormInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
-    setFormInput(e.target.value);
+    let { name, value } = e.target;
+
+    setRequestFormData((prevRequestFormData) => ({
+      ...prevRequestFormData,
+      [name]: value,
+    }));
   };
+
   return (
     <div>
-      <form onSubmit={generateBtnClicked}>
-        <input type="text"
-        value={formInput}
-        onChange={updateFormInput}></input>
-        <button type="submit">Generate</button>
+      <form>
+        <div>
+          <div>
+            <label>Vibe</label>
+            <input type="text" name="vibe" onChange={updateFormInput}/>
+          </div>
+          {/* <div>
+            <label>Additional Notes</label>
+            <input type="text" name="notes" onChange={updateFormInput}/>
+          </div> */}
+          <button onClick={generateBtnClicked}>Generate</button>
+        </div>
       </form>
     </div>
   );
