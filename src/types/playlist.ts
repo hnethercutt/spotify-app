@@ -14,3 +14,11 @@ export type PlaylistRequest = {
     generateTitleAndDescription: boolean;
     songCount: number;
 };
+
+export type SpotifySong = {
+    title: string;
+    artist: string;
+    album: string;
+    coverArtUrl: string;
+    id: string;
+};
