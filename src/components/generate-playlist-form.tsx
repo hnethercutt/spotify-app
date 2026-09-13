@@ -1,6 +1,9 @@
 'use client';
 import { useState } from 'react';
-import type { PlaylistRequest } from '@/types/playlist';
+import SpotifySearchBar from './spotify-search-bar';
+import type { PlaylistRequest, SpotifySong } from '@/types/playlist';
+import { generatePlaylist } from '@/services/playlist-service';
+import { Chip } from '@mui/material';
 
 export default function GeneratePlaylistForm() {
   const [requestFormData, setRequestFormData] = useState<PlaylistRequest>({
@@ -17,16 +20,23 @@ export default function GeneratePlaylistForm() {
     songCount: 25,
   });
 
-  const [formInput, setFormInput] = useState('');
+  const handleRefSongSelected = (selectedSong: SpotifySong) => {
+    setRequestFormData((prevRequestFormData) => ({
+      ...prevRequestFormData,
+      referenceSongs: [...(prevRequestFormData.referenceSongs ?? []), selectedSong],
+    }));
+  };
+
+  const deleteRefSong = (indexToRemove: number) => {
+    setRequestFormData((prevRequestFormData) => ({
+      ...prevRequestFormData,
+      referenceSongs: prevRequestFormData.referenceSongs?.filter((_, index) => index !== indexToRemove),
+    }));
+  };
 
   const generateBtnClicked = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    const res = await fetch('/api/generate', {
-      method: 'POST',
-      body: JSON.stringify({ prompt: formInput }),
-    });
-    const result = await res.json();
-    console.log(result.output);
+    generatePlaylist(requestFormData);
   };
 
   const updateFormInput = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -41,19 +51,35 @@ export default function GeneratePlaylistForm() {
 
   return (
     <div>
-      <form>
+      <div>
         <div>
-          <div>
-            <label>Vibe</label>
-            <input type="text" name="vibe" onChange={updateFormInput}/>
-          </div>
-          {/* <div>
-            <label>Additional Notes</label>
-            <input type="text" name="notes" onChange={updateFormInput}/>
-          </div> */}
-          <button onClick={generateBtnClicked}>Generate</button>
+          <label>Vibe</label>
+          <input type="text" name="vibe" onChange={updateFormInput} />
         </div>
-      </form>
+        <div>
+          <label>Additional Notes</label>
+          <input type="text" name="notes" onChange={updateFormInput} />
+        </div>
+        <div>
+          <label>Reference Songs</label>
+          {requestFormData.referenceSongs?.map((item, index) => (
+            <div key={index}>
+              {/* Color styling is temporary */}
+              <Chip
+                label={`${item.title} - ${item.artist}`}
+                variant="outlined"
+                sx={{
+                  color: "white",
+                  "& .MuiChip-deleteIcon": { color: "white" },
+                }}
+                onDelete={() => deleteRefSong(index)}
+              />
+            </div>
+          ))}
+          <SpotifySearchBar onSongSelected={handleRefSongSelected} />
+        </div>
+        <button onClick={generateBtnClicked}>Generate</button>
+      </div>
     </div>
   );
 }
