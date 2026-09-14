@@ -30,7 +30,6 @@ export function generatePlaylistPrompt(data: PlaylistRequest) {
         ${data.referenceSongs?.length ? data.referenceSongs.map((song) => `- ${song.title} by ${song.artist}`).join('\n') : 'None'}
 
         FILTERS:
-        - Language preferences: ${data.languages?.join(', ') || 'Any language'}
         - Duplicate artists allowed: ${data.allowDuplicateArtists ? 'Yes' : 'No'}
         - Include reference songs: ${data.includeReferenceSongs ? 'Yes' : 'No'}
         - Artists and genres to COMPLETELY EXCLUDE:

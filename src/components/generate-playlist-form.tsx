@@ -10,7 +10,6 @@ export default function GeneratePlaylistForm() {
     vibe: '',
     notes: '',
     referenceSongs: [],
-    languages: [],
     excludeArtists: [],
     excludeGenres: [],
     popularity: 'balanced',

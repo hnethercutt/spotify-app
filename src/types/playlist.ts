@@ -2,7 +2,6 @@ export type PlaylistRequest = {
     vibe: string;
     notes?: string;
     referenceSongs?: SpotifySong[];
-    languages?: string[];
     excludeArtists?: SpotifyArtist[];
     excludeGenres?: string[];
     popularity: 'mainstream' | 'underground' | 'balanced';
