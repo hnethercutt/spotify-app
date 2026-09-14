@@ -1,30 +1,39 @@
 'use client';
 import { useState, useEffect, useRef } from 'react';
-import { SpotifySong } from '@/types/playlist';
-import { fetchSearchResults } from '@/services/playlist-service';
+import { SpotifyArtist, SpotifySong } from '@/types/playlist';
+import { fetchSongSearchResults, fetchArtistSearchResults } from '@/services/playlist-service';
 import Image from 'next/image';
 import _ from 'lodash';
 import './spotify-search-bar.css';
 
 // So parent components can access selected song data
 interface SearchBarProps {
-  onSongSelected: (refSong: SpotifySong) => void;
+  onSongSelected?: (refSong: SpotifySong) => void;
+  onArtistSelected?: (artist: SpotifyArtist) => void;
 }
 
-export default function SpotifySearchBar({ onSongSelected }: SearchBarProps) {
+export default function SpotifySearchBar({ onSongSelected, onArtistSelected }: SearchBarProps) {
   const [searchTerm, setSearchTerm] = useState('');
-  const [searchResults, setSearchResults] = useState<SpotifySong[]>([]);
+  const [songResults, setSongResults] = useState<SpotifySong[]>([]);
+  const [artistResults, setArtistResults] = useState<SpotifyArtist[]>([]);
 
   useEffect(() => {
     // Wait a couple seconds while the user types in their search before making the API call
     const timer = setTimeout(async () => {
       if (searchTerm) {
-        fetchSearchResults(searchTerm).then(function(_searchResults) {
-          setSearchResults(_searchResults);
-        });
+        if(onSongSelected) {
+          fetchSongSearchResults(searchTerm).then(function(_searchResults) {
+            setSongResults(_searchResults);
+          });
+        } else {
+          fetchArtistSearchResults(searchTerm).then(function(_searchResults) {
+            setArtistResults(_searchResults);
+          });
+        }
       // User either never typed anything in or erased all of what they had, so we want to clear the results
       } else {
-        setSearchResults([]);
+        setSongResults([]);
+        setArtistResults([]);
       }
     }, 200);
 
@@ -40,8 +49,13 @@ export default function SpotifySearchBar({ onSongSelected }: SearchBarProps) {
 
   // Pass back the data for the song that was clicked and clear the results display
   const handleSongClick = (selectedSong: SpotifySong) => {
-    onSongSelected(selectedSong);
-    setSearchResults([]);
+    onSongSelected?.(selectedSong);
+    setSongResults([]);
+  };
+
+  const handleArtistClick = (selectedArtist: SpotifyArtist) => {
+    onArtistSelected?.(selectedArtist);
+    setArtistResults([]);
   };
 
   const searchRef = useRef<HTMLDivElement>(null);
@@ -50,7 +64,8 @@ export default function SpotifySearchBar({ onSongSelected }: SearchBarProps) {
     // Hide search results when the user clicks outside of the search bar or results area
     const handleClickOffResults = (e: MouseEvent) => {
       if(searchRef.current && !searchRef.current.contains(e.target as Node)) {
-        setSearchResults([]);
+        setSongResults([]);
+        setArtistResults([]);
       }
     };
 
@@ -71,9 +86,9 @@ export default function SpotifySearchBar({ onSongSelected }: SearchBarProps) {
           onChange={updateSearchTerm}
         ></input>
       </form>
-      {searchResults.length > 0 && (
+      {songResults.length > 0 && (
         <div className="search-results-container">
-          {searchResults.map((item, index) => (
+          {songResults.map((item, index) => (
             <div key={index} className="search-result" onClick={() => handleSongClick(item)}>
               <Image
                 className="cover-art"
@@ -85,6 +100,24 @@ export default function SpotifySearchBar({ onSongSelected }: SearchBarProps) {
               <div className="result-text">
                 <span className="track-name">{item.title}</span>
                 <span className="artist-name">Song &sdot; {item.artist}</span>
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
+      {artistResults.length > 0 && (
+        <div className="search-results-container">
+          {artistResults.map((item, index) => (
+            <div key={index} className="search-result" onClick={() => handleArtistClick(item)}>
+              <Image
+                className="cover-art"
+                src={item.imageUrl}
+                width="50"
+                height="50"
+                alt="Artist image"
+              ></Image>
+              <div className="result-text">
+                <span className="track-name">{item.name}</span>
               </div>
             </div>
           ))}

@@ -1,7 +1,7 @@
 'use client';
 import { useState } from 'react';
 import SpotifySearchBar from './spotify-search-bar';
-import type { PlaylistRequest, SpotifySong } from '@/types/playlist';
+import type { PlaylistRequest, SpotifySong, SpotifyArtist } from '@/types/playlist';
 import { generatePlaylist } from '@/services/playlist-service';
 import { Chip } from '@mui/material';
 
@@ -31,6 +31,20 @@ export default function GeneratePlaylistForm() {
     setRequestFormData((prevRequestFormData) => ({
       ...prevRequestFormData,
       referenceSongs: prevRequestFormData.referenceSongs?.filter((_, index) => index !== indexToRemove),
+    }));
+  };
+
+  const handleExcludeArtistSelected = (selectedArtist: SpotifyArtist) => {
+    setRequestFormData((prevRequestFormData) => ({
+      ...prevRequestFormData,
+      excludeArtists: [...(prevRequestFormData.excludeArtists ?? []), selectedArtist],
+    }));
+  };
+
+  const deleteExcludeArtist = (indexToRemove: number) => {
+    setRequestFormData((prevRequestFormData) => ({
+      ...prevRequestFormData,
+      excludeArtists: prevRequestFormData.excludeArtists?.filter((_, index) => index !== indexToRemove),
     }));
   };
 
@@ -77,6 +91,24 @@ export default function GeneratePlaylistForm() {
             </div>
           ))}
           <SpotifySearchBar onSongSelected={handleRefSongSelected} />
+        </div>
+        <div>
+          <label>Exclude Artists</label>
+          {requestFormData.excludeArtists?.map((item, index) => (
+            <div key={index}>
+              {/* Color styling is temporary */}
+              <Chip
+                label={`${item.name}`}
+                variant="outlined"
+                sx={{
+                  color: "white",
+                  "& .MuiChip-deleteIcon": { color: "white" },
+                }}
+                onDelete={() => deleteExcludeArtist(index)}
+              />
+            </div>
+          ))}
+          <SpotifySearchBar onArtistSelected={handleExcludeArtistSelected} />
         </div>
         <button onClick={generateBtnClicked}>Generate</button>
       </div>

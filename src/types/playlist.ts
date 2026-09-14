@@ -1,12 +1,9 @@
 export type PlaylistRequest = {
     vibe: string;
     notes?: string;
-    referenceSongs?: {
-        title: string;
-        artist: string;
-    }[];
+    referenceSongs?: SpotifySong[];
     languages?: string[];
-    excludeArtists?: string[];
+    excludeArtists?: SpotifyArtist[];
     excludeGenres?: string[];
     popularity: 'mainstream' | 'underground' | 'balanced';
     allowDuplicateArtists: boolean;
@@ -20,5 +17,11 @@ export type SpotifySong = {
     artist: string;
     album: string;
     coverArtUrl: string;
+    id: string;
+};
+
+export type SpotifyArtist = {
+    name: string;
+    imageUrl: string;
     id: string;
 };

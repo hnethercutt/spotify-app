@@ -4,15 +4,14 @@ import { getGuestSpotifyAccessToken } from '@/lib/spotifyAuth';
 
 export async function GET(req: NextRequest) {
   const searchParams = req.nextUrl.searchParams;
-  // Pulls out the users input/the search term
   const query = searchParams.get('q');
-  // Searching for songs doesn't required an authenticated user
+  const type = searchParams.get('type');
   const token = await getGuestSpotifyAccessToken();
 
-  if (query) {
+  if (query && type) {
     const params = new URLSearchParams({
       q: query,
-      type: 'track',
+      type: type
     });
 
     const res = await fetch(
@@ -25,7 +24,11 @@ export async function GET(req: NextRequest) {
     );
     const data = await res.json();
 
-    return NextResponse.json(data.tracks);
+    if(type === 'track') {
+      return NextResponse.json(data.tracks);
+    }
+
+    return NextResponse.json(data.artists);
   } else {
     return NextResponse.json({
       error: 'Query is missing.',
