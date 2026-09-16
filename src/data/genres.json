@@ -5,49 +5,6 @@
         "Acoustic Pop"
     ]
 }, {
-    "genre": "African Music",
-    "subgenres": [
-        "3 Step",
-        "Afrikaans Contemporary",
-        "Afrikaans Pop",
-        "Afro Adura",
-        "Afro R&B",
-        "Afro Tech",
-        "Afrobeat",
-        "Afrobeats",
-        "Afrogospel",
-        "Afropiano",
-        "Afroswing",
-        "Alté",
-        "Amapiano",
-        "Asakaa",
-        "Azonto",
-        "Bacardi",
-        "Bikutsi",
-        "Bongo Flava",
-        "Bongo Piano",
-        "Coupé Décalé",
-        "Ethiopian Jazz",
-        "Genge",
-        "Gengetone",
-        "Ghanaian Hip Hop",
-        "Highlife",
-        "Hiplife",
-        "Kizomba",
-        "Kuduro",
-        "Maloya",
-        "Maskandi",
-        "Moroccan Pop",
-        "Ndombolo",
-        "Nigerian Drill",
-        "Private School Piano",
-        "Rap Ivoire",
-        "Rhumba",
-        "Rumba (Congolese)",
-        "Shaaby",
-        "Soukouss"
-    ]
-}, {
     "genre": "Ambient",
     "subgenres": [
         "Ambient",
@@ -60,12 +17,6 @@
         "lowercase",
         "Post-Rock",
         "Space Music"
-    ]
-}, {
-    "genre": "Argentinian Music",
-    "subgenres": [
-        "Chamamé",
-        "Cuarteto"
     ]
 }, {
     "genre": "Beats",
@@ -110,59 +61,6 @@
         "Singer-Songwriter",
         "Soul Blues",
         "Texas Blues"
-    ]
-}, {
-    "genre": "Brazilian Music",
-    "subgenres": [
-        "Agronejo",
-        "Brazilian Bass",
-        "Brazilian Gospel",
-        "Brazilian Jazz",
-        "Brazilian Pop",
-        "Brazilian Rock",
-        "Forró Tradicional",
-        "Funk Bruxaria",
-        "Funk Consciente",
-        "Funk De BH",
-        "Funk Melody",
-        "Música Popular Colombiana",
-        "Nova MPB",
-        "Sertanejo Tradicional",
-        "Sertanejo Universitário",
-        "Trap Brasileiro",
-        "Trap Funk"
-    ]
-}, {
-    "genre": "Canadian Music",
-    "subgenres": [
-        "Chanson Québécoise",
-        "Country Québécois",
-        "Folk Québécois",
-        "Folklore Québécois",
-        "Indie Québécois",
-        "Pop Québécoise",
-        "R&B Québécois",
-        "Rap Québécois"
-    ]
-}, {
-    "genre": "Caribbean Music",
-    "subgenres": [
-        "Dancehall",
-        "Dembow",
-        "Dub",
-        "Kompa",
-        "Reggae",
-        "Reggaeton",
-        "Roots Reggae",
-        "Shatta",
-        "Soca"
-    ]
-}, {
-    "genre": "Children's Music",
-    "subgenre": [
-        "Children's Music",
-        "Kindermusik",
-        "Lullaby"
     ]
 }, {
     "genre": "Classical",
@@ -359,33 +257,12 @@
         "Witch House"
     ]
 }, {
-    "genre": "Danish Music",
-    "subgenres": [
-        "Dansk Pop",
-        "Dansk Rap"
-    ]
-}, {
-    "genre": "Dutch Music",
-    "subgenres": [
-        "Hollands"
-    ]
-}, {
     "genre": "Experimental",
     "subgenres": [
         "Electroacoustic",
         "Musique Concrète",
         "Neofolk",
         "Plunderphonics"
-    ]
-}, {
-    "genre": "Flamenco",
-    "subgenres": [
-        "Electronic Flamenco (Flamenco electrónico)",
-        "Flamenco",
-        "Flamenco Chill",
-        "Flamenco Jazz",
-        "Flamenco Pop",
-        "Flamenco Urbano"
     ]
 }, {
     "genre": "Folk & Roots",
@@ -418,40 +295,6 @@
         "Sea Shanties",
         "Southern Rock",
         "Traditional Folk"
-    ]
-}, {
-    "genre": "French Music",
-    "subgenres": [
-        "Chanson",
-        "Chanson Alternative",
-        "Coupé Décalé",
-        "French House",
-        "French Indie Pop",
-        "French Jazz",
-        "French R&B",
-        "Frenchcore",
-        "Pop Française",
-        "Pop Urbaine",
-        "Rap Chrétien",
-        "Variété Française",
-        "Variété Urbaine"
-    ]
-}, {
-    "genre": "German Music",
-    "subgenres": [
-        "Dansband",
-        "German Indie",
-        "German Indie Pop",
-        "Neue Deutsche Welle",
-        "Schlager",
-        "Schweizer Mundart",
-        "Volksmusik"
-    ]
-}, {
-    "genre": "Greek Music",
-    "subgenres": [
-        "Entekhno",
-        "Laiko"
     ]
 }, {
     "genre": "Hip-Hop",
@@ -538,52 +381,6 @@
         "West Coast Hip Hop"
     ]
 }, {
-    "genre": "Hungarian Music",
-    "subgenres": [
-        "Mulatós"
-    ]
-}, {
-    "genre": "Indian Music",
-    "subgenres": [
-        "Bangla Pop",
-        "Bhajan",
-        "Bhangra",
-        "Bhojiwood",
-        "Bhojpuri Pop",
-        "Bollywood",
-        "Carnatic Classical",
-        "Chutney",
-        "Desi",
-        "Desi Hip Hop",
-        "Desi Pop",
-        "Filmi",
-        "Ghazal",
-        "Gujarati Garba",
-        "Gujarati Pop",
-        "Haryanvi Pop",
-        "Hindi Hip Hop",
-        "Hindi Indie",
-        "Hindi Pop",
-        "Hindustani Classical",
-        "Indian Fusion",
-        "Kannada Pop",
-        "Kollywood",
-        "Malayalam Hip Hop",
-        "Malayalam Pop",
-        "Marathi Pop",
-        "Mollywood",
-        "Punjabi Hip Hop",
-        "Punjabi Pop",
-        "Qawwali",
-        "Sandalwood",
-        "Tamil Dance",
-        "Tamil Hip Hop",
-        "Tamil Indie",
-        "Tamil Pop",
-        "Telugu Pop",
-        "Tollywood"
-    ]
-}, {
     "genre": "Indie & Alternative",
     "subgenres": [
         "Alt Country",
@@ -644,35 +441,6 @@
         "Trap Beats"
     ]
 }, {
-    "genre": "Indonesian Music",
-    "subgenres": [
-        "Hipdut",
-        "Indonesian Hip Hop",
-        "Indonesian Indie Rock",
-        "Indonesian Jazz",
-        "Indonesian R&B",
-        "Indonesian Rock",
-        "Koplo",
-        "Nusantara Music",
-        "Pop Kreatif"
-    ]
-}, {
-    "genre": "Israeli Music",
-    "subgenres": [
-        "Mizrahi",
-        "Mizrahit"
-    ]
-}, {
-    "genre": "Italian Music",
-    "subgenres": [
-        "Cantautorato Italiano",
-        "Canzone Napoletana",
-        "Neomelodico",
-        "Neomelodico Napoletano",
-        "Rap Napoletano",
-        "Trap Italiana"
-    ]
-}, {
     "genre": "J-Tracks",
     "subgenres": [
         "Anime",
@@ -682,19 +450,6 @@
         "J-Rap",
         "J-Rock",
         "J-Tracks"
-    ]
-}, {
-    "genre": "Japanese Music",
-    "subgenres": [
-        "City Pop",
-        "Enka",
-        "J-Classical",
-        "J-Indie",
-        "Japanese VGM",
-        "Kayokyoku",
-        "Shibuya-kei",
-        "Visual Kei",
-        "Vocaloid"
     ]
 }, {
     "genre": "Jazz",
@@ -731,124 +486,6 @@
         "Vocal Jazz"
     ]
 }, {
-    "genre": "Laotian Music",
-    "subgenres": [
-        "Mor Lum"
-    ]
-}, {
-    "genre": "Latin Music",
-    "subgenres": [
-        "Argentine Rock",
-        "Arrocha",
-        "Axé",
-        "Bachata",
-        "Banda",
-        "Bolero (Latin)",
-        "Bossa Nova",
-        "Brazilian Funk",
-        "Brega",
-        "Brega Funk",
-        "Cha Cha Cha",
-        "Champeta",
-        "Chicha",
-        "Colombian Pop",
-        "Corrido",
-        "Corridos Bélicos",
-        "Corridos Tumbados",
-        "Cumbia",
-        "Cumbia Norteña",
-        "Cumbia Sonidera",
-        "Dancehall",
-        "Dembow Belico",
-        "Duranguense",
-        "Electro Corridos",
-        "Electrocumbia",
-        "Flamenco",
-        "Folclor Andino",
-        "Folclor Llanero",
-        "Folclor Pacifico",
-        "Folklore Argentino",
-        "Forró",
-        "Funk Carioca",
-        "Funk Consciente",
-        "Grupera",
-        "Guaracha",
-        "Huayno",
-        "Indie Mexicano",
-        "Latin",
-        "Latin Afrobeats",
-        "Latin Alternative",
-        "Latin Country",
-        "Latin Dance",
-        "Latin Folk",
-        "Latin Folklore",
-        "Latin Hip Hop",
-        "Latin Indie",
-        "Latin Jazz",
-        "Latin Pop",
-        "Latin R&B",
-        "Latin Rock",
-        "Mambo",
-        "Mambo Chileno",
-        "Mariachi",
-        "Merengue",
-        "Mexican Hip Hop",
-        "MPB",
-        "Música Mexicana",
-        "Música Nativista",
-        "Música Tropical",
-        "Neoperreo",
-        "Norteño",
-        "Norteño Sax",
-        "Nueva Trova",
-        "Outros (Brasil)",
-        "Pagode",
-        "Pagode Baiano",
-        "Pentecostal Music",
-        "Piseiro",
-        "Pop Leve",
-        "Pop Urbano",
-        "Punta",
-        "Punto Guajiro",
-        "Ranchera",
-        "Rap Nacional",
-        "Reggae En Español",
-        "Reggaeton",
-        "Reggaeton Chileno",
-        "Reggaeton Mexicano",
-        "RKT",
-        "Rock en Español",
-        "Rock Mexicano",
-        "Sad Sierreño",
-        "Salsa",
-        "Salsa Choke",
-        "Samba",
-        "Seresta",
-        "Sertanejo",
-        "Sierreño",
-        "Ska Mexicano",
-        "Son Cubano",
-        "Son Jarocho",
-        "Tango",
-        "Techengue",
-        "Tecnobrega",
-        "Tejano",
-        "Timba",
-        "Trap Argentino",
-        "Trap Chileno",
-        "Trap Latino",
-        "Trova",
-        "Turreo",
-        "Urbano Latino",
-        "Vallenato",
-        "Zouk"
-    ]
-}, {
-    "genre": "Malian Music",
-    "subgenres": [
-        "M'balax"
-    ]
-}, {
     "genre": "Metal",
     "subgenres": [
         "Alternative Metal",
@@ -880,40 +517,6 @@
         "Symphonic Metal",
         "Thrash Metal",
         "Trap Metal"
-    ]
-}, {
-    "genre": "Música Mexicana",
-    "subgenres": [
-        "Banda",
-        "Corrido",
-        "Mariachi",
-        "Norteño",
-        "Sierreño",
-        "Tejano"
-    ]
-}, {
-    "genre": "Noise & Non-Music Audio",
-    "subgenres": [
-        "Ambient Noise",
-        "ASMR",
-        "Audio Plays",
-        "Binaural Beats",
-        "Comedy",
-        "Fiction",
-        "Nature Noise",
-        "Nonfiction",
-        "Poetry",
-        "Spoken Word"
-    ]
-}, {
-    "genre": "Norwegian Music",
-    "subgenres": [
-        "Norsk Rock"
-    ]
-}, {
-    "genre": "Polish Music",
-    "subgenres": [
-        "Disco Polo"
     ]
 }, {
     "genre": "Pop",
@@ -1025,11 +628,6 @@
         "Worship Pop"
     ]
 }, {
-    "genre": "Portuguese Music",
-    "subgenres": [
-        "Fado"
-    ]
-}, {
     "genre": "Punk",
     "subgenres": [
         "Celtic Punk",
@@ -1103,26 +701,6 @@
         "Reggae Pop",
         "Reggae Rock",
         "Rocksteady"
-    ]
-}, {
-    "genre": "Regional Roots",
-    "subgenres": [
-        "Basque Folk (Folk Vasco)",
-        "Cajun",
-        "Castilian Folk (Folk Castellano)",
-        "Catalan Folk (Folk Catalán)",
-        "Fado",
-        "Folclor Andino",
-        "Folclor Llanero",
-        "Folclor Pacifico",
-        "Folklore Argentino",
-        "Folklore Québécois",
-        "Irish Traditional",
-        "Maskandi",
-        "Native American Music",
-        "Phleng Phuea Chiwit",
-        "Pow Wow",
-        "Zydeco"
     ]
 }, {
     "genre": "Religious Music",
@@ -1256,30 +834,6 @@
         "Yacht Rock"
     ]
 }, {
-    "genre": "Romanian Music",
-    "subgenres": [
-        "Manele",
-        "Rominimal",
-        "Trapanele"
-    ]
-}, {
-    "genre": "Russian Music",
-    "subgenres": [
-        "Russian Chanson"
-    ]
-}, {
-    "genre": "Singer-Songwriter",
-    "subgenres": [
-        "Americana",
-        "Blues Singer-Songwriter",
-        "Folk Singer-Songwriter",
-        "Indie Singer-Songwriter",
-        "Pop Singer-Songwriter",
-        "Rock Singer-Songwriter",
-        "Singer-Songwriter",
-        "Soul Singer-Songwriter"
-    ]
-}, {
     "genre": "Soul & Funk",
     "subgenres": [
         "Afro Soul",
@@ -1313,20 +867,6 @@
         "Vaporwave"
     ]
 }, {
-    "genre": "Thai Music",
-    "subgenres": [
-        "Luk Thung",
-        "Phleng Phuea Chiwit",
-        "Southern Thai Music",
-        "T-Pop",
-        "Thai Country",
-        "Thai Hip Hop",
-        "Thai Indie Pop",
-        "Thai Indie Rock",
-        "Thai Rock",
-        "Thai Trap"
-    ]
-}, {
     "genre": "Traditional",
     "subgenres": [
         "Canzone Napoletana",
@@ -1339,30 +879,5 @@
         "Polka",
         "Traditional Music",
         "Villancicos"
-    ]
-}, {
-    "genre": "Turkish Music",
-    "subgenres": [
-        "Arabesk",
-        "Karadeniz Turkuleri",
-        "Oyun Havasi",
-        "Turkce Pop",
-        "Turkce Rap",
-        "Turkish Trap Pop"
-    ]
-}, {
-    "genre": "Uruguayan Music",
-    "subgenres": [
-        "Candombe",
-        "Murga"
-    ]
-}, {
-    "genre": "Vietnamese Music",
-    "subgenres": [
-        "Indie Viet",
-        "Lofi Viet",
-        "V-Pop",
-        "Vietnamese Bolero",
-        "Vietnamese Hip Hop"
     ]
 }]
