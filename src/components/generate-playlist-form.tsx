@@ -1,6 +1,7 @@
 'use client';
 import { useState } from 'react';
 import SpotifySearchBar from './spotify-search-bar';
+import GenreSelector from './genre-selector';
 import type { PlaylistRequest, SpotifySong, SpotifyArtist } from '@/types/playlist';
 import { generatePlaylist } from '@/services/playlist-service';
 import { Chip } from '@mui/material';
@@ -44,6 +45,13 @@ export default function GeneratePlaylistForm() {
     setRequestFormData((prevRequestFormData) => ({
       ...prevRequestFormData,
       excludeArtists: prevRequestFormData.excludeArtists?.filter((_, index) => index !== indexToRemove),
+    }));
+  };
+
+  const handleExcludeGenresSelected = (selectedGenres: string[]) => {
+    setRequestFormData(prevRequestFormData => ({
+      ...prevRequestFormData,
+      excludeGenres: selectedGenres
     }));
   };
 
@@ -108,6 +116,10 @@ export default function GeneratePlaylistForm() {
             </div>
           ))}
           <SpotifySearchBar onArtistSelected={handleExcludeArtistSelected} />
+        </div>
+        <div>
+          <label>Exclude Genres</label>
+          <GenreSelector onGenresSelected={handleExcludeGenresSelected} />
         </div>
         <button onClick={generateBtnClicked}>Generate</button>
       </div>
