@@ -18,10 +18,8 @@ export async function POST(req: NextRequest) {
     });
 
     const playlist = JSON.parse(response.text ?? '');
-    console.log(playlist);
     const spotifyPlaylist = await createSpotifyPlaylist(playlist);
 
-    console.log(spotifyPlaylist);
     return NextResponse.json({
       playlist: spotifyPlaylist
     });
