@@ -4,7 +4,7 @@ import SpotifySearchBar from './spotify-search-bar';
 import GenreSelector from './genre-selector';
 import type { PlaylistRequest, SpotifySong, SpotifyArtist } from '@/types/playlist';
 import { generatePlaylist } from '@/services/playlist-service';
-import { Chip, FormControl, FormLabel, FormControlLabel, RadioGroup, Radio } from '@mui/material';
+import { Chip, FormControl, FormLabel, FormControlLabel, RadioGroup, Radio, Select, MenuItem, SelectChangeEvent } from '@mui/material';
 import { useId } from 'react';
 
 export default function GeneratePlaylistForm() {
@@ -81,6 +81,13 @@ export default function GeneratePlaylistForm() {
     setRequestFormData(prevRequestFormData => ({
       ...prevRequestFormData,
       generateTitleAndDescription: value === 'true' ? true : false
+    }));
+  };
+
+  const handleSongCountSelected = (e: SelectChangeEvent<number>) => {
+    setRequestFormData((prevRequestFormData) => ({
+      ...prevRequestFormData,
+      songCount: Number(e.target.value)
     }));
   };
 
@@ -207,6 +214,36 @@ export default function GeneratePlaylistForm() {
               <FormControlLabel value="true" control={<Radio />} label="Yes" />
               <FormControlLabel value="false" control={<Radio />} label="No" />
             </RadioGroup>
+          </FormControl>
+        </div>
+        <div>
+          <FormControl>
+            <Select
+              value={requestFormData.songCount}
+              label="Song Count"
+              onChange={handleSongCountSelected}
+            >
+              <MenuItem value={25}>25</MenuItem>
+              <MenuItem value={25}>50</MenuItem>
+              <MenuItem value={25}>75</MenuItem>
+              <MenuItem value={25}>100</MenuItem>
+              <MenuItem value={25}>125</MenuItem>
+              <MenuItem value={25}>150</MenuItem>
+              <MenuItem value={25}>175</MenuItem>
+              <MenuItem value={25}>200</MenuItem>
+              <MenuItem value={25}>225</MenuItem>
+              <MenuItem value={25}>250</MenuItem>
+              <MenuItem value={25}>275</MenuItem>
+              <MenuItem value={25}>300</MenuItem>
+              <MenuItem value={25}>325</MenuItem>
+              <MenuItem value={25}>350</MenuItem>
+              <MenuItem value={25}>375</MenuItem>
+              <MenuItem value={25}>400</MenuItem>
+              <MenuItem value={25}>425</MenuItem>
+              <MenuItem value={25}>450</MenuItem>
+              <MenuItem value={25}>475</MenuItem>
+              <MenuItem value={25}>500</MenuItem>
+            </Select>
           </FormControl>
         </div>
         <button onClick={generateBtnClicked}>Generate</button>
