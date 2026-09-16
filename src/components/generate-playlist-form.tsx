@@ -4,7 +4,8 @@ import SpotifySearchBar from './spotify-search-bar';
 import GenreSelector from './genre-selector';
 import type { PlaylistRequest, SpotifySong, SpotifyArtist } from '@/types/playlist';
 import { generatePlaylist } from '@/services/playlist-service';
-import { Chip } from '@mui/material';
+import { Chip, FormControl, FormLabel, FormControlLabel, RadioGroup, Radio } from '@mui/material';
+import { useId } from 'react';
 
 export default function GeneratePlaylistForm() {
   const [requestFormData, setRequestFormData] = useState<PlaylistRequest>({
@@ -55,6 +56,13 @@ export default function GeneratePlaylistForm() {
     }));
   };
 
+  const handlePopularitySelected = (e: React.ChangeEvent<HTMLInputElement>, newPopularity: string) => {
+    setRequestFormData(prevRequestFormData => ({
+      ...prevRequestFormData,
+      popularity: newPopularity as PlaylistRequest['popularity']
+    }));
+  };
+
   const generateBtnClicked = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     generatePlaylist(requestFormData);
@@ -69,6 +77,8 @@ export default function GeneratePlaylistForm() {
       [name]: value,
     }));
   };
+
+  const id = useId();
 
   return (
     <div>
@@ -120,6 +130,21 @@ export default function GeneratePlaylistForm() {
         <div>
           <label>Exclude Genres</label>
           <GenreSelector onGenresSelected={handleExcludeGenresSelected} />
+        </div>
+        <div>
+          <FormControl>
+            <label>Song Popularity</label>
+            <RadioGroup
+              aria-labelledby={`${id}-label`}
+              defaultValue="mainstream"
+              name="radio-buttons-group"
+              onChange={handlePopularitySelected}
+            >
+              <FormControlLabel value="mainstream" control={<Radio />} label="Mainstream" />
+              <FormControlLabel value="balanced" control={<Radio />} label="Balanced" />
+              <FormControlLabel value="underground" control={<Radio />} label="Underground" />
+            </RadioGroup>
+          </FormControl>
         </div>
         <button onClick={generateBtnClicked}>Generate</button>
       </div>
