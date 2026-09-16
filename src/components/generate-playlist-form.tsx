@@ -63,6 +63,27 @@ export default function GeneratePlaylistForm() {
     }));
   };
 
+  const handleDupeArtistsSelected = (e: React.ChangeEvent<HTMLInputElement>, value: string) => {
+    setRequestFormData(prevRequestFormData => ({
+      ...prevRequestFormData,
+      allowDuplicateArtists: value === 'true' ? true : false
+    }));
+  };
+
+  const handleIncludeRefSongsSelected = (e: React.ChangeEvent<HTMLInputElement>, value: string) => {
+    setRequestFormData(prevRequestFormData => ({
+      ...prevRequestFormData,
+      includeReferenceSongs: value === 'true' ? true : false
+    }));
+  };
+
+  const handleGenTitleAndDescSelected = (e: React.ChangeEvent<HTMLInputElement>, value: string) => {
+    setRequestFormData(prevRequestFormData => ({
+      ...prevRequestFormData,
+      generateTitleAndDescription: value === 'true' ? true : false
+    }));
+  };
+
   const generateBtnClicked = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     generatePlaylist(requestFormData);
@@ -143,6 +164,48 @@ export default function GeneratePlaylistForm() {
               <FormControlLabel value="mainstream" control={<Radio />} label="Mainstream" />
               <FormControlLabel value="balanced" control={<Radio />} label="Balanced" />
               <FormControlLabel value="underground" control={<Radio />} label="Underground" />
+            </RadioGroup>
+          </FormControl>
+        </div>
+        <div>
+          <FormControl>
+            <label>Allow Duplicate Artists?</label>
+            <RadioGroup
+              aria-labelledby={`${id}-label`}
+              defaultValue="true"
+              name="radio-buttons-group"
+              onChange={handleDupeArtistsSelected}
+            >
+              <FormControlLabel value="true" control={<Radio />} label="Yes" />
+              <FormControlLabel value="false" control={<Radio />} label="No" />
+            </RadioGroup>
+          </FormControl>
+        </div>
+        <div>
+          <FormControl>
+            <label>Include Reference Songs?</label>
+            <RadioGroup
+              aria-labelledby={`${id}-label`}
+              defaultValue="true"
+              name="radio-buttons-group"
+              onChange={handleIncludeRefSongsSelected}
+            >
+              <FormControlLabel value="true" control={<Radio />} label="Yes" />
+              <FormControlLabel value="false" control={<Radio />} label="No" />
+            </RadioGroup>
+          </FormControl>
+        </div>
+        <div>
+          <FormControl>
+            <label>Generate Title and Description?</label>
+            <RadioGroup
+              aria-labelledby={`${id}-label`}
+              defaultValue="true"
+              name="radio-buttons-group"
+              onChange={handleGenTitleAndDescSelected}
+            >
+              <FormControlLabel value="true" control={<Radio />} label="Yes" />
+              <FormControlLabel value="false" control={<Radio />} label="No" />
             </RadioGroup>
           </FormControl>
         </div>
