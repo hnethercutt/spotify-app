@@ -7,7 +7,7 @@ const CLIENT_ID = process.env.CLIENT_ID!;
 const REDIRECT_URI = process.env.REDIRECT_URI!;
 
 export async function GET() {
-  const scope = 'user-read-private user-read-email';
+  const scope = 'user-read-private user-read-email playlist-modify-public';
   const state = crypto.randomBytes(16).toString('hex');
 
   const params = new URLSearchParams({

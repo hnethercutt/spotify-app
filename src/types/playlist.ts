@@ -24,3 +24,12 @@ export type SpotifyArtist = {
     imageUrl: string;
     id: string;
 };
+
+export type PlaylistItems = {
+    playlistTitle?: string;
+    playlistDescription?: string;
+    songs: [{
+        title: string;
+        artist: string;
+    }]
+}

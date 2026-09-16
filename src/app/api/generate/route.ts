@@ -1,6 +1,7 @@
 import { GoogleGenAI } from '@google/genai';
 import { NextRequest, NextResponse } from 'next/server';
 import { generatePlaylistPrompt } from '@/lib/generatePlaylistPrompt';
+import { createSpotifyPlaylist } from '@/lib/createPlaylist';
 
 const ai = new GoogleGenAI({
   apiKey: process.env.GEMINI_API_KEY!,
@@ -16,8 +17,13 @@ export async function POST(req: NextRequest) {
       contents: prompt,
     });
 
+    const playlist = JSON.parse(response.text ?? '');
+    console.log(playlist);
+    const spotifyPlaylist = await createSpotifyPlaylist(playlist);
+
+    console.log(spotifyPlaylist);
     return NextResponse.json({
-      output: response.text,
+      playlist: spotifyPlaylist
     });
 
   } catch (err) {
