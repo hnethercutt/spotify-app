@@ -1,7 +1,7 @@
 import { GoogleGenAI } from '@google/genai';
 import { NextRequest, NextResponse } from 'next/server';
 import { generatePlaylistPrompt } from '@/lib/generatePlaylistPrompt';
-import { createSpotifyPlaylist } from '@/lib/createPlaylist';
+import { createSpotifyPlaylist, addSongsToPlaylist } from '@/lib/createPlaylist';
 
 const ai = new GoogleGenAI({
   apiKey: process.env.GEMINI_API_KEY!,
@@ -18,12 +18,13 @@ export async function POST(req: NextRequest) {
     });
 
     const playlist = JSON.parse(response.text ?? '');
-    const spotifyPlaylist = await createSpotifyPlaylist(playlist);
+    const spotifyPlaylistId = await createSpotifyPlaylist(playlist);
+    await addSongsToPlaylist(playlist, spotifyPlaylistId);
 
     return NextResponse.json({
-      playlist: spotifyPlaylist
+      playlistTitle: playlist.playlistTitle,
+      playlistDescription: playlist.playlistDescription
     });
-
   } catch (err) {
     return NextResponse.json({ error: err });
   }
