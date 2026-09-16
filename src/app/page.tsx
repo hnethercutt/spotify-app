@@ -8,7 +8,7 @@ export default function Home() {
   return (
     <div className={styles.page}>
       <SpotifyLoginButton />
-      <SpotifySearchBar />
+      {/* <SpotifySearchBar /> */}
       <GeneratePlaylistForm />
     </div>
   );
