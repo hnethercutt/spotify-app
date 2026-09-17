@@ -111,7 +111,7 @@ export default function GeneratePlaylistForm() {
   const id = useId();
 
   return (
-    <div className='generate-form-container'>
+    <div className='generate-form-container flex-column'>
       <div className='vibe flex-column'>
         <label className='section-label'>Vibe</label>
         <TextField
@@ -412,7 +412,9 @@ export default function GeneratePlaylistForm() {
             }
           }} />
       </div>
-      <button onClick={generateBtnClicked}>Generate</button>
+      <div className='generate-btn-container'>
+        <button className='generate-btn' onClick={generateBtnClicked}>Generate</button>
+      </div>
     </div>
   );
 }
