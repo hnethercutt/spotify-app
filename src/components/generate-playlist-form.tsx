@@ -176,60 +176,163 @@ export default function GeneratePlaylistForm() {
         <label className='section-label'>Genres to Exclude</label>
         <GenreSelector onGenresSelected={handleExcludeGenresSelected} />
       </div>
-      <div>
+      <div className='radio-sections'>
         <FormControl>
-          <label>Song Popularity</label>
+          <label className='section-label'>Song Popularity</label>
           <RadioGroup
+            row
             aria-labelledby={`${id}-label`}
             defaultValue="mainstream"
             name="radio-buttons-group"
             onChange={handlePopularitySelected}
           >
-            <FormControlLabel value="mainstream" control={<Radio />} label="Mainstream" />
-            <FormControlLabel value="balanced" control={<Radio />} label="Balanced" />
-            <FormControlLabel value="underground" control={<Radio />} label="Underground" />
+            <FormControlLabel
+              value="mainstream"
+              label="Mainstream"
+              control={
+                <Radio
+                  sx={{
+                    color: '#b3b3b3',
+                    '&.Mui-checked': {
+                      color: '#1ed760'
+                    }
+                  }}
+                />}/>
+            <FormControlLabel
+              value="balanced"
+              label="Balanced"
+              control={
+                <Radio
+                  sx={{
+                    color: '#b3b3b3',
+                    '&.Mui-checked': {
+                      color: '#1ed760'
+                    }
+                  }}
+              />}/>
+            <FormControlLabel
+              value="underground"
+              label="Underground"
+              control={
+                <Radio
+                  sx={{
+                    color: '#b3b3b3',
+                    '&.Mui-checked': {
+                      color: '#1ed760'
+                    }
+                  }}
+                />}/>
           </RadioGroup>
         </FormControl>
       </div>
-      <div>
+      <div className='radio-sections'>
         <FormControl>
-          <label>Allow Duplicate Artists?</label>
+          <label className='section-label'>Allow Duplicate Artists?</label>
           <RadioGroup
+            row
             aria-labelledby={`${id}-label`}
             defaultValue="true"
             name="radio-buttons-group"
             onChange={handleDupeArtistsSelected}
           >
-            <FormControlLabel value="true" control={<Radio />} label="Yes" />
-            <FormControlLabel value="false" control={<Radio />} label="No" />
+            <FormControlLabel
+              value="true"
+              label="Yes"
+              control={
+                <Radio
+                  sx={{
+                    color: '#b3b3b3',
+                    '&.Mui-checked': {
+                      color: '#1ed760'
+                    }
+                  }}
+                />}/>
+            <FormControlLabel
+              value="false"
+              label="No"
+              control={
+                <Radio
+                  sx={{
+                    color: '#b3b3b3',
+                    '&.Mui-checked': {
+                      color: '#1ed760'
+                    }
+                  }}
+                />}/>
           </RadioGroup>
         </FormControl>
       </div>
-      <div>
+      <div className='radio-sections'>
         <FormControl>
-          <label>Include Reference Songs?</label>
+          <label className='section-label'>Include Reference Songs?</label>
           <RadioGroup
+            row
             aria-labelledby={`${id}-label`}
             defaultValue="true"
             name="radio-buttons-group"
             onChange={handleIncludeRefSongsSelected}
           >
-            <FormControlLabel value="true" control={<Radio />} label="Yes" />
-            <FormControlLabel value="false" control={<Radio />} label="No" />
+            <FormControlLabel
+              value="true"
+              label="Yes"
+              control={
+                <Radio
+                  sx={{
+                    color: '#b3b3b3',
+                    '&.Mui-checked': {
+                      color: '#1ed760'
+                    }
+                  }}
+                />}/>
+            <FormControlLabel
+              value="false"
+              label="No"
+              control={
+                <Radio
+                  sx={{
+                    color: '#b3b3b3',
+                    '&.Mui-checked': {
+                      color: '#1ed760'
+                    }
+                  }}
+                />}/>
           </RadioGroup>
         </FormControl>
       </div>
-      <div>
+      <div className='radio-sections'>
         <FormControl>
-          <label>Generate Title and Description?</label>
+          <label className='section-label'>Generate Title and Description?</label>
           <RadioGroup
+            row
             aria-labelledby={`${id}-label`}
             defaultValue="true"
             name="radio-buttons-group"
             onChange={handleGenTitleAndDescSelected}
           >
-            <FormControlLabel value="true" control={<Radio />} label="Yes" />
-            <FormControlLabel value="false" control={<Radio />} label="No" />
+            <FormControlLabel
+              value="true"
+              label="Yes"
+              control={
+                <Radio
+                  sx={{
+                    color: '#b3b3b3',
+                    '&.Mui-checked': {
+                      color: '#1ed760'
+                    }
+                  }}
+                />}/>
+            <FormControlLabel
+              value="false"
+              label="No"
+              control={
+                <Radio
+                  sx={{
+                    color: '#b3b3b3',
+                    '&.Mui-checked': {
+                      color: '#1ed760'
+                    }
+                  }}
+                />}/>
           </RadioGroup>
         </FormControl>
       </div>
