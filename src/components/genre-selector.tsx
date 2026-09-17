@@ -63,44 +63,78 @@ export default function GenreSelector({ onGenresSelected }: GenreSelectorProps) 
   };
 
   return (
-    <List>
-      {genreData.map((data, index) => (
-        <Fragment key={index}>
-          <ListItem key={index} onClick={() => handleToggle(index)}>
-            <ListItemIcon>
-              <Checkbox
-                edge="start"
-                sx={{ color: 'white' }}
-                disableRipple
-                checked={checkedGenres.includes(data.genre)}
-                onClick={(e) => e.stopPropagation()}
-                onChange={() => handleCheckGenre(data.genre, index)}
+    <div className='genre-list'>
+      <List className='flex-column'>
+        {genreData.map((data, index) => (
+          <Fragment key={index}>
+            <ListItem
+              key={index}
+              onClick={() => handleToggle(index)}
+              sx={{
+                width: '300px'
+              }}
+            >
+              <ListItemIcon>
+                <Checkbox
+                  size='small'
+                  edge="start"
+                  sx={{
+                    color: '#b3b3b3',
+                    '&.Mui-checked': {
+                      color: '#1ed760'
+                    },
+                  }}
+                  disableRipple
+                  checked={checkedGenres.includes(data.genre)}
+                  onClick={(e) => e.stopPropagation()}
+                  onChange={() => handleCheckGenre(data.genre, index)}
+                />
+              </ListItemIcon>
+              <ListItemText
+                primary={data.genre}
+                sx={{
+                  '& .MuiListItemText-primary': {
+                    fontSize: '14px'
+                  }
+                }}
               />
-            </ListItemIcon>
-            <ListItemText primary={data.genre} />
-            {openItems[index] ? <ExpandLess /> : <ExpandMore />}
-          </ListItem>
-          <Collapse in={openItems[index]} timeout="auto" unmountOnExit>
-            <List disablePadding>
-              {data.subgenres?.map((item, subIndex) => (
-                <ListItem key={subIndex} sx={{ pl: 4 }}>
-                  <ListItemIcon>
-                    <Checkbox
-                      edge="start"
-                      sx={{ color: 'white' }}
-                      disableRipple
-                      checked={checkedGenres.includes(item)}
-                      onClick={(e) => e.stopPropagation()}
-                      onChange={() => handleCheckSubgenre(item)}
+              {openItems[index] ? <ExpandLess /> : <ExpandMore />}
+            </ListItem>
+            <Collapse in={openItems[index]} timeout="auto" unmountOnExit>
+              <List disablePadding>
+                {data.subgenres?.map((item, subIndex) => (
+                  <ListItem key={subIndex} sx={{ pl: 6 }}>
+                    <ListItemIcon>
+                      <Checkbox
+                        size='small'
+                        edge="start"
+                        sx={{
+                          color: '#b3b3b3',
+                          '&.Mui-checked': {
+                            color: '#1ed760'
+                          },
+                        }}
+                        disableRipple
+                        checked={checkedGenres.includes(item)}
+                        onClick={(e) => e.stopPropagation()}
+                        onChange={() => handleCheckSubgenre(item)}
+                      />
+                    </ListItemIcon>
+                    <ListItemText
+                      primary={item}
+                      sx={{
+                        '& .MuiListItemText-primary': {
+                          fontSize: '14px'
+                        }
+                      }}
                     />
-                  </ListItemIcon>
-                  <ListItemText primary={item} />
-                </ListItem>
-              ))}
-            </List>
-          </Collapse>
-        </Fragment>
-      ))}
-    </List>
+                  </ListItem>
+                ))}
+              </List>
+            </Collapse>
+          </Fragment>
+        ))}
+      </List>
+    </div>
   );
 }

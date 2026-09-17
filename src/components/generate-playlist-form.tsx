@@ -172,8 +172,8 @@ export default function GeneratePlaylistForm() {
         ))}
         <SpotifySearchBar onArtistSelected={handleExcludeArtistSelected} />
       </div>
-      <div>
-        <label>Exclude Genres</label>
+      <div className='exclude-genre flex-column'>
+        <label className='section-label'>Genres to Exclude</label>
         <GenreSelector onGenresSelected={handleExcludeGenresSelected} />
       </div>
       <div>

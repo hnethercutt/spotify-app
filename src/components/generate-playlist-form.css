@@ -19,3 +19,12 @@
 .search-bar-section {
     padding: 0px 45px 25px;
 }
+
+.exclude-genre {
+    padding: 0px 45px;
+}
+
+.genre-list {
+    display: flex;
+    justify-content: center;
+}
