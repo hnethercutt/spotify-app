@@ -1,0 +1,55 @@
+.generate-form-container {
+    width: 650px;
+    padding: 45px 0px;
+}
+
+.vibe {
+    padding: 25px 45px;
+}
+
+.notes {
+    padding: 45px;
+    padding-top: 0px;
+}
+
+.section-label {
+    margin-bottom: 8px;
+    font-weight: 600;
+}
+
+.search-bar-section {
+    padding: 0px 45px 25px;
+}
+
+.exclude-genre {
+    padding: 0px 45px;
+}
+
+.genre-list {
+    display: flex;
+    justify-content: center;
+}
+
+.radio-sections {
+    padding: 15px 45px;
+}
+
+.song-count {
+    padding: 15px 45px 35px;
+}
+
+.generate-btn-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.generate-btn {
+    text-align: center;
+    font-size: 18px;
+    width: 175px;
+    padding: 8px 12px;
+    background-color: var(--spotify-green);
+    border-color: transparent;
+    border-radius: 5px;
+}

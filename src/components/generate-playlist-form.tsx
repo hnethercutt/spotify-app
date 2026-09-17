@@ -4,8 +4,9 @@ import SpotifySearchBar from './spotify-search-bar';
 import GenreSelector from './genre-selector';
 import type { PlaylistRequest, SpotifySong, SpotifyArtist } from '@/types/playlist';
 import { generatePlaylist } from '@/services/playlist-service';
-import { Chip, FormControl, FormLabel, FormControlLabel, RadioGroup, Radio, Select, MenuItem, SelectChangeEvent } from '@mui/material';
+import { TextField, Chip, FormControl, FormLabel, FormControlLabel, RadioGroup, Radio, Select, MenuItem, SelectChangeEvent } from '@mui/material';
 import { useId } from 'react';
+import './generate-playlist-form.css';
 
 export default function GeneratePlaylistForm() {
   const [requestFormData, setRequestFormData] = useState<PlaylistRequest>({
@@ -110,144 +111,309 @@ export default function GeneratePlaylistForm() {
   const id = useId();
 
   return (
-    <div>
-      <div>
-        <div>
-          <label>Vibe</label>
-          <input type="text" name="vibe" onChange={updateFormInput} />
-        </div>
-        <div>
-          <label>Additional Notes</label>
-          <input type="text" name="notes" onChange={updateFormInput} />
-        </div>
-        <div>
-          <label>Reference Songs</label>
-          {requestFormData.referenceSongs?.map((item, index) => (
-            <div key={index}>
-              {/* Color styling is temporary */}
-              <Chip
-                label={`${item.title} - ${item.artist}`}
-                variant="outlined"
-                sx={{
-                  color: "white",
-                  "& .MuiChip-deleteIcon": { color: "white" },
-                }}
-                onDelete={() => deleteRefSong(index)}
-              />
-            </div>
-          ))}
-          <SpotifySearchBar onSongSelected={handleRefSongSelected} />
-        </div>
-        <div>
-          <label>Exclude Artists</label>
-          {requestFormData.excludeArtists?.map((item, index) => (
-            <div key={index}>
-              {/* Color styling is temporary */}
-              <Chip
-                label={`${item.name}`}
-                variant="outlined"
-                sx={{
-                  color: "white",
-                  "& .MuiChip-deleteIcon": { color: "white" },
-                }}
-                onDelete={() => deleteExcludeArtist(index)}
-              />
-            </div>
-          ))}
-          <SpotifySearchBar onArtistSelected={handleExcludeArtistSelected} />
-        </div>
-        <div>
-          <label>Exclude Genres</label>
-          <GenreSelector onGenresSelected={handleExcludeGenresSelected} />
-        </div>
-        <div>
-          <FormControl>
-            <label>Song Popularity</label>
-            <RadioGroup
-              aria-labelledby={`${id}-label`}
-              defaultValue="mainstream"
-              name="radio-buttons-group"
-              onChange={handlePopularitySelected}
-            >
-              <FormControlLabel value="mainstream" control={<Radio />} label="Mainstream" />
-              <FormControlLabel value="balanced" control={<Radio />} label="Balanced" />
-              <FormControlLabel value="underground" control={<Radio />} label="Underground" />
-            </RadioGroup>
-          </FormControl>
-        </div>
-        <div>
-          <FormControl>
-            <label>Allow Duplicate Artists?</label>
-            <RadioGroup
-              aria-labelledby={`${id}-label`}
-              defaultValue="true"
-              name="radio-buttons-group"
-              onChange={handleDupeArtistsSelected}
-            >
-              <FormControlLabel value="true" control={<Radio />} label="Yes" />
-              <FormControlLabel value="false" control={<Radio />} label="No" />
-            </RadioGroup>
-          </FormControl>
-        </div>
-        <div>
-          <FormControl>
-            <label>Include Reference Songs?</label>
-            <RadioGroup
-              aria-labelledby={`${id}-label`}
-              defaultValue="true"
-              name="radio-buttons-group"
-              onChange={handleIncludeRefSongsSelected}
-            >
-              <FormControlLabel value="true" control={<Radio />} label="Yes" />
-              <FormControlLabel value="false" control={<Radio />} label="No" />
-            </RadioGroup>
-          </FormControl>
-        </div>
-        <div>
-          <FormControl>
-            <label>Generate Title and Description?</label>
-            <RadioGroup
-              aria-labelledby={`${id}-label`}
-              defaultValue="true"
-              name="radio-buttons-group"
-              onChange={handleGenTitleAndDescSelected}
-            >
-              <FormControlLabel value="true" control={<Radio />} label="Yes" />
-              <FormControlLabel value="false" control={<Radio />} label="No" />
-            </RadioGroup>
-          </FormControl>
-        </div>
-        <div>
-          <FormControl>
-            <Select
-              value={requestFormData.songCount}
-              label="Song Count"
-              onChange={handleSongCountSelected}
-            >
-              <MenuItem value={25}>25</MenuItem>
-              <MenuItem value={25}>50</MenuItem>
-              <MenuItem value={25}>75</MenuItem>
-              <MenuItem value={25}>100</MenuItem>
-              <MenuItem value={25}>125</MenuItem>
-              <MenuItem value={25}>150</MenuItem>
-              <MenuItem value={25}>175</MenuItem>
-              <MenuItem value={25}>200</MenuItem>
-              <MenuItem value={25}>225</MenuItem>
-              <MenuItem value={25}>250</MenuItem>
-              <MenuItem value={25}>275</MenuItem>
-              <MenuItem value={25}>300</MenuItem>
-              <MenuItem value={25}>325</MenuItem>
-              <MenuItem value={25}>350</MenuItem>
-              <MenuItem value={25}>375</MenuItem>
-              <MenuItem value={25}>400</MenuItem>
-              <MenuItem value={25}>425</MenuItem>
-              <MenuItem value={25}>450</MenuItem>
-              <MenuItem value={25}>475</MenuItem>
-              <MenuItem value={25}>500</MenuItem>
-            </Select>
-          </FormControl>
-        </div>
-        <button onClick={generateBtnClicked}>Generate</button>
+    <div className='generate-form-container flex-column'>
+      <div className='vibe flex-column'>
+        <label className='section-label'>Vibe</label>
+        <TextField
+          name='vibe'
+          multiline
+          rows={3}
+          maxRows={3}
+          onChange={updateFormInput}
+          placeholder='Describe the vibe of the playlist you want to generate'
+          sx={{
+            '& .MuiOutlinedInput-root': {
+              color: '#b3b3b3',
+              '& fieldset': {
+                borderColor: '#b3b3b3'
+              },
+              '&:hover fieldset': {
+                borderColor: '#1ed760'
+              },
+              '&.Mui-focused fieldset': {
+                borderColor: '#1ed760',
+                borderWidth: '2px'
+              }
+            }
+          }} />
+      </div>
+      <div className='search-bar-section flex-column'>
+        <label className='section-label'>Reference Songs</label>
+        {requestFormData.referenceSongs?.map((item, index) => (
+          <div key={index}>
+            <Chip
+              label={`${item.title} - ${item.artist}`}
+              variant="outlined"
+              sx={{
+                color: "white",
+                "& .MuiChip-deleteIcon": { color: "white" },
+              }}
+              onDelete={() => deleteRefSong(index)}
+            />
+          </div>
+        ))}
+        <SpotifySearchBar onSongSelected={handleRefSongSelected} />
+      </div>
+      <div className='search-bar-section flex-column'>
+        <label className='section-label'>Artists to Exclude</label>
+        {requestFormData.excludeArtists?.map((item, index) => (
+          <div key={index}>
+            {/* Color styling is temporary */}
+            <Chip
+              label={`${item.name}`}
+              variant="outlined"
+              sx={{
+                color: "white",
+                "& .MuiChip-deleteIcon": { color: "white" },
+              }}
+              onDelete={() => deleteExcludeArtist(index)}
+            />
+          </div>
+        ))}
+        <SpotifySearchBar onArtistSelected={handleExcludeArtistSelected} />
+      </div>
+      <div className='exclude-genre flex-column'>
+        <label className='section-label'>Genres to Exclude</label>
+        <GenreSelector onGenresSelected={handleExcludeGenresSelected} />
+      </div>
+      <div className='radio-sections'>
+        <FormControl>
+          <label className='section-label'>Song Popularity</label>
+          <RadioGroup
+            row
+            aria-labelledby={`${id}-label`}
+            defaultValue="mainstream"
+            name="radio-buttons-group"
+            onChange={handlePopularitySelected}
+          >
+            <FormControlLabel
+              value="mainstream"
+              label="Mainstream"
+              control={
+                <Radio
+                  sx={{
+                    color: '#b3b3b3',
+                    '&.Mui-checked': {
+                      color: '#1ed760'
+                    }
+                  }}
+                />}/>
+            <FormControlLabel
+              value="balanced"
+              label="Balanced"
+              control={
+                <Radio
+                  sx={{
+                    color: '#b3b3b3',
+                    '&.Mui-checked': {
+                      color: '#1ed760'
+                    }
+                  }}
+              />}/>
+            <FormControlLabel
+              value="underground"
+              label="Underground"
+              control={
+                <Radio
+                  sx={{
+                    color: '#b3b3b3',
+                    '&.Mui-checked': {
+                      color: '#1ed760'
+                    }
+                  }}
+                />}/>
+          </RadioGroup>
+        </FormControl>
+      </div>
+      <div className='radio-sections'>
+        <FormControl>
+          <label className='section-label'>Allow Duplicate Artists?</label>
+          <RadioGroup
+            row
+            aria-labelledby={`${id}-label`}
+            defaultValue="true"
+            name="radio-buttons-group"
+            onChange={handleDupeArtistsSelected}
+          >
+            <FormControlLabel
+              value="true"
+              label="Yes"
+              control={
+                <Radio
+                  sx={{
+                    color: '#b3b3b3',
+                    '&.Mui-checked': {
+                      color: '#1ed760'
+                    }
+                  }}
+                />}/>
+            <FormControlLabel
+              value="false"
+              label="No"
+              control={
+                <Radio
+                  sx={{
+                    color: '#b3b3b3',
+                    '&.Mui-checked': {
+                      color: '#1ed760'
+                    }
+                  }}
+                />}/>
+          </RadioGroup>
+        </FormControl>
+      </div>
+      <div className='radio-sections'>
+        <FormControl>
+          <label className='section-label'>Include Reference Songs?</label>
+          <RadioGroup
+            row
+            aria-labelledby={`${id}-label`}
+            defaultValue="true"
+            name="radio-buttons-group"
+            onChange={handleIncludeRefSongsSelected}
+          >
+            <FormControlLabel
+              value="true"
+              label="Yes"
+              control={
+                <Radio
+                  sx={{
+                    color: '#b3b3b3',
+                    '&.Mui-checked': {
+                      color: '#1ed760'
+                    }
+                  }}
+                />}/>
+            <FormControlLabel
+              value="false"
+              label="No"
+              control={
+                <Radio
+                  sx={{
+                    color: '#b3b3b3',
+                    '&.Mui-checked': {
+                      color: '#1ed760'
+                    }
+                  }}
+                />}/>
+          </RadioGroup>
+        </FormControl>
+      </div>
+      <div className='radio-sections'>
+        <FormControl>
+          <label className='section-label'>Generate Title and Description?</label>
+          <RadioGroup
+            row
+            aria-labelledby={`${id}-label`}
+            defaultValue="true"
+            name="radio-buttons-group"
+            onChange={handleGenTitleAndDescSelected}
+          >
+            <FormControlLabel
+              value="true"
+              label="Yes"
+              control={
+                <Radio
+                  sx={{
+                    color: '#b3b3b3',
+                    '&.Mui-checked': {
+                      color: '#1ed760'
+                    }
+                  }}
+                />}/>
+            <FormControlLabel
+              value="false"
+              label="No"
+              control={
+                <Radio
+                  sx={{
+                    color: '#b3b3b3',
+                    '&.Mui-checked': {
+                      color: '#1ed760'
+                    }
+                  }}
+                />}/>
+          </RadioGroup>
+        </FormControl>
+      </div>
+      <div className='song-count flex-column'>
+        <label className='section-label'>Number of songs to add</label>
+        <FormControl sx={{
+          '& .MuiSelect-select': {
+            color: '#b3b3b3'
+          },
+          '& .MuiSelect-icon': {
+            color: '#1ed760'
+          },
+          '& .MuiOutlinedInput-root': {
+            color: '#b3b3b3',
+            '& fieldset': {
+              borderColor: '#b3b3b3'
+            },
+            '&:hover fieldset': {
+              borderColor: '#1ed760'
+            },
+            '&.Mui-focused fieldset': {
+              borderColor: '#1ed760',
+              borderWidth: '2px'
+            }
+          }
+        }}>
+          {/* Might change to an input later */}
+          <Select
+            value={requestFormData.songCount}
+            onChange={handleSongCountSelected}
+          >
+            <MenuItem value={25}>25</MenuItem>
+            <MenuItem value={25}>50</MenuItem>
+            <MenuItem value={25}>75</MenuItem>
+            <MenuItem value={25}>100</MenuItem>
+            <MenuItem value={25}>125</MenuItem>
+            <MenuItem value={25}>150</MenuItem>
+            <MenuItem value={25}>175</MenuItem>
+            <MenuItem value={25}>200</MenuItem>
+            <MenuItem value={25}>225</MenuItem>
+            <MenuItem value={25}>250</MenuItem>
+            <MenuItem value={25}>275</MenuItem>
+            <MenuItem value={25}>300</MenuItem>
+            <MenuItem value={25}>325</MenuItem>
+            <MenuItem value={25}>350</MenuItem>
+            <MenuItem value={25}>375</MenuItem>
+            <MenuItem value={25}>400</MenuItem>
+            <MenuItem value={25}>425</MenuItem>
+            <MenuItem value={25}>450</MenuItem>
+            <MenuItem value={25}>475</MenuItem>
+            <MenuItem value={25}>500</MenuItem>
+          </Select>
+        </FormControl>
+      </div>
+      <div className='notes flex-column'>
+        <label className='section-label'>Additional Notes</label>
+        <TextField
+          name='notes'
+          multiline
+          rows={3}
+          maxRows={3}
+          onChange={updateFormInput}
+          placeholder='Add any additional notes here'
+          sx={{
+            '& .MuiOutlinedInput-root': {
+              color: '#b3b3b3',
+              '& fieldset': {
+                borderColor: '#b3b3b3'
+              },
+              '&:hover fieldset': {
+                borderColor: '#1ed760'
+              },
+              '&.Mui-focused fieldset': {
+                borderColor: '#1ed760',
+                borderWidth: '2px'
+              }
+            }
+          }} />
+      </div>
+      <div className='generate-btn-container'>
+        <button className='generate-btn' onClick={generateBtnClicked}>Generate</button>
       </div>
     </div>
   );
