@@ -63,78 +63,73 @@ export default function GenreSelector({ onGenresSelected }: GenreSelectorProps) 
   };
 
   return (
-    <div className='genre-list'>
-      <List className='flex-column'>
-        {genreData.map((data, index) => (
-          <Fragment key={index}>
-            <ListItem
-              key={index}
-              onClick={() => handleToggle(index)}
-              sx={{
-                width: '300px'
-              }}
-            >
-              <ListItemIcon>
-                <Checkbox
-                  size='small'
-                  edge="start"
-                  sx={{
-                    color: '#b3b3b3',
-                    '&.Mui-checked': {
-                      color: '#1ed760'
-                    },
-                  }}
-                  disableRipple
-                  checked={checkedGenres.includes(data.genre)}
-                  onClick={(e) => e.stopPropagation()}
-                  onChange={() => handleCheckGenre(data.genre, index)}
-                />
-              </ListItemIcon>
-              <ListItemText
-                primary={data.genre}
+    <List className='flex-column'>
+      {genreData.map((data, index) => (
+        <Fragment key={index}>
+          <ListItem
+            key={index}
+            onClick={() => handleToggle(index)}
+          >
+            <ListItemIcon>
+              <Checkbox
+                size='small'
+                edge="start"
                 sx={{
-                  '& .MuiListItemText-primary': {
-                    fontSize: '14px'
-                  }
+                  color: '#b3b3b3',
+                  '&.Mui-checked': {
+                    color: '#1ed760'
+                  },
                 }}
+                disableRipple
+                checked={checkedGenres.includes(data.genre)}
+                onClick={(e) => e.stopPropagation()}
+                onChange={() => handleCheckGenre(data.genre, index)}
               />
-              {openItems[index] ? <ExpandLess /> : <ExpandMore />}
-            </ListItem>
-            <Collapse in={openItems[index]} timeout="auto" unmountOnExit>
-              <List disablePadding>
-                {data.subgenres?.map((item, subIndex) => (
-                  <ListItem key={subIndex} sx={{ pl: 6 }}>
-                    <ListItemIcon>
-                      <Checkbox
-                        size='small'
-                        edge="start"
-                        sx={{
-                          color: '#b3b3b3',
-                          '&.Mui-checked': {
-                            color: '#1ed760'
-                          },
-                        }}
-                        disableRipple
-                        checked={checkedGenres.includes(item)}
-                        onClick={(e) => e.stopPropagation()}
-                        onChange={() => handleCheckSubgenre(item)}
-                      />
-                    </ListItemIcon>
-                    <ListItemText
-                      primary={item}
+            </ListItemIcon>
+            <ListItemText
+              primary={data.genre}
+              sx={{
+                '& .MuiListItemText-primary': {
+                  fontSize: '14px'
+                }
+              }}
+            />
+            {openItems[index] ? <ExpandLess /> : <ExpandMore />}
+          </ListItem>
+          <Collapse in={openItems[index]} timeout="auto" unmountOnExit>
+            <List disablePadding>
+              {data.subgenres?.map((item, subIndex) => (
+                <ListItem key={subIndex} sx={{ pl: 6 }}>
+                  <ListItemIcon>
+                    <Checkbox
+                      size='small'
+                      edge="start"
                       sx={{
-                        '& .MuiListItemText-primary': {
-                          fontSize: '14px'
-                        }
+                        color: '#b3b3b3',
+                        '&.Mui-checked': {
+                          color: '#1ed760'
+                        },
                       }}
+                      disableRipple
+                      checked={checkedGenres.includes(item)}
+                      onClick={(e) => e.stopPropagation()}
+                      onChange={() => handleCheckSubgenre(item)}
                     />
-                  </ListItem>
-                ))}
-              </List>
-            </Collapse>
-          </Fragment>
-        ))}
-      </List>
-    </div>
+                  </ListItemIcon>
+                  <ListItemText
+                    primary={item}
+                    sx={{
+                      '& .MuiListItemText-primary': {
+                        fontSize: '14px'
+                      }
+                    }}
+                  />
+                </ListItem>
+              ))}
+            </List>
+          </Collapse>
+        </Fragment>
+      ))}
+    </List>
   );
 }
