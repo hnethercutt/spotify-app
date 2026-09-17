@@ -336,11 +336,32 @@ export default function GeneratePlaylistForm() {
           </RadioGroup>
         </FormControl>
       </div>
-      <div>
-        <FormControl>
+      <div className='song-count flex-column'>
+        <label className='section-label'>Number of songs to add</label>
+        <FormControl sx={{
+          '& .MuiSelect-select': {
+            color: '#b3b3b3'
+          },
+          '& .MuiSelect-icon': {
+            color: '#1ed760'
+          },
+          '& .MuiOutlinedInput-root': {
+            color: '#b3b3b3',
+            '& fieldset': {
+              borderColor: '#b3b3b3'
+            },
+            '&:hover fieldset': {
+              borderColor: '#1ed760'
+            },
+            '&.Mui-focused fieldset': {
+              borderColor: '#1ed760',
+              borderWidth: '2px'
+            }
+          }
+        }}>
+          {/* Might change to an input later */}
           <Select
             value={requestFormData.songCount}
-            label="Song Count"
             onChange={handleSongCountSelected}
           >
             <MenuItem value={25}>25</MenuItem>
