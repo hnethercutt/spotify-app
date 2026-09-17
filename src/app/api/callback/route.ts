@@ -36,7 +36,7 @@ export async function GET(req: NextRequest) {
     const data = await tokenRes.json();
     // When access token expires
     const expiresAt = Date.now() + data.expires_in * 1000;
-    const res = NextResponse.redirect(`http://${HOST}:${PORT}`);
+    const res = NextResponse.redirect(`http://${HOST}:${PORT}/generate`);
 
     // Store cookies
     res.cookies.set('spotify_access_token', data.access_token, {
