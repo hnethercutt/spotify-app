@@ -3,7 +3,7 @@ import GeneratePlaylistForm from '@/components/generate-playlist-form';
 
 export default function Generate() {
   return (
-    <div>
+    <div className={styles.container}>
       <GeneratePlaylistForm />
     </div>
   );

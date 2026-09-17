@@ -1,5 +1,6 @@
 .generate-form-container {
     width: 650px;
+    padding: 45px 0px;
 }
 
 .vibe {
@@ -34,7 +35,7 @@
 }
 
 .song-count {
-    padding: 15px 45px;
+    padding: 15px 45px 35px;
 }
 
 .generate-btn-container {
@@ -44,11 +45,9 @@
 }
 
 .generate-btn {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    text-align: center;
     font-size: 18px;
-    width: 250px;
+    width: 175px;
     padding: 8px 12px;
     background-color: var(--spotify-green);
     border-color: transparent;
