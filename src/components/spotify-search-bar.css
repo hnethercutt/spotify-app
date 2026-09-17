@@ -1,6 +1,5 @@
 .search-bar-container {
   padding: 25px;
-  height: 500px;
   display: flex;
   flex-direction: column;
   align-items: center;
