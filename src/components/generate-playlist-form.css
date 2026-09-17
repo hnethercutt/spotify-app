@@ -1,0 +1,17 @@
+.generate-form-container {
+    padding: 125px;
+}
+
+.vibe {
+    padding: 45px;
+}
+
+.notes {
+    padding: 45px;
+    padding-top: 0px;
+}
+
+.section-label {
+    margin-bottom: 8px;
+    font-weight: 600;
+}
