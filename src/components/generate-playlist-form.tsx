@@ -21,6 +21,7 @@ export default function GeneratePlaylistForm() {
     songCount: 25,
   });
 
+  // Will probably condense all of these later
   const handleRefSongSelected = (selectedSong: SpotifySong) => {
     setRequestFormData((prevRequestFormData) => ({
       ...prevRequestFormData,

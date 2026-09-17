@@ -58,6 +58,7 @@ export default function SpotifySearchBar({ onSongSelected, onArtistSelected }: S
     setArtistResults([]);
   };
 
+  // Used to keep track of the entire div element for handling clicks on/off of it
   const searchRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {

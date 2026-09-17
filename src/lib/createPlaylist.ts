@@ -3,6 +3,7 @@ import { getValidSpotifyAccessToken } from "./spotifyAuth";
 import { NextResponse } from "next/server";
 import _ from "lodash";
 
+// Creates an empty spotify playlist on the users account
 export async function createSpotifyPlaylist(playlist: PlaylistItems) {
     const token = await getValidSpotifyAccessToken();
 
@@ -24,6 +25,7 @@ export async function createSpotifyPlaylist(playlist: PlaylistItems) {
     return data.id;
 }
 
+// Specifically for searching with the AI generated list of songs
 export async function searchSpotify(searchTerm: string, token: string): Promise<{ title: string; artist: string; uri: string }> {
     const params = new URLSearchParams({
         q: searchTerm,
@@ -49,15 +51,15 @@ export async function searchSpotify(searchTerm: string, token: string): Promise<
 
 export async function addSongsToPlaylist(playlist: PlaylistItems, playlistId: string) {
     const token = await getValidSpotifyAccessToken();
-    
+
+    // Get the song ID from spotify with each title/artist from the list before making the API call
     let songs = await Promise.all(playlist.songs.map((_playlistSong) => {
         let searchTerm = `track:${_playlistSong.title} artist:${_playlistSong.artist}`;
         return searchSpotify(searchTerm, token);
     }))
 
+    // Make sure the list doesn't include any empty uris (song not found on spotify)
     let songUris = songs.filter((song) => song?.uri).map((song) => song.uri);
-
-    console.log(songUris);
 
     const response = await fetch(`https://api.spotify.com/v1/playlists/${playlistId}/items`, {
         method: 'POST',

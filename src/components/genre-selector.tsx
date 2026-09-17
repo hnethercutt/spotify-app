@@ -4,11 +4,13 @@ import { ExpandLess, ExpandMore } from '@mui/icons-material';
 import { useState, useEffect, Fragment } from 'react';
 import _ from 'lodash';
 
+// Represent the JSON data as a type so typescript knows neither field will ever be undefined
 type GenreData = {
   genre: string;
   subgenres: string[];
 };
 
+// For updating the parent component (the generate playlist form itself)
 interface GenreSelectorProps {
     onGenresSelected: (genres: string[]) => void;
 }
@@ -19,23 +21,29 @@ export default function GenreSelector({ onGenresSelected }: GenreSelectorProps) 
   const [checkedGenres, setCheckedGenres] = useState<string[]>([]);
 
     useEffect(() => {
+        // Notify parent component when genres/subgenres are checked/unchecked
         onGenresSelected(checkedGenres);
     }, [checkedGenres]);
 
   const handleToggle = (toggleIndex: number) => {
+    // Ensures the correct genre is expanded/collapsed
     setOpenItems((prevOpenItems) =>
       prevOpenItems.map((item, index) => (index === toggleIndex ? !item : item))
     );
   };
 
   const handleCheckGenre = (genre: string, index: number) => {
+    // Grab the checked genres subgenres
     const genreAndSubgenres = [genre, ...genreData[index].subgenres];
 
     setCheckedGenres((prevCheckedGenres) => {
+      // If the genre is on the list, means we are currently unchecking
       if (prevCheckedGenres.includes(genre)) {
+        // So we want to remove the genre from the list AND any of its subgenres that are currently checked
         return prevCheckedGenres.filter((item) => !genreAndSubgenres.includes(item));
       }
 
+      // Otherwise, add/check the genre and all of its subgenres
       return [
         ...prevCheckedGenres,
         ...genreAndSubgenres.filter((item) => !prevCheckedGenres.includes(item)),
@@ -46,6 +54,7 @@ export default function GenreSelector({ onGenresSelected }: GenreSelectorProps) 
   const handleCheckSubgenre = (subgenre: string) => {
     setCheckedGenres((prevCheckedGenres) => {
       if (prevCheckedGenres.includes(subgenre)) {
+        // Subgenres are individually checked/unchecked, so just remove the specific subgenre when unchecking
         return prevCheckedGenres.filter((item) => item !== subgenre);
       }
 

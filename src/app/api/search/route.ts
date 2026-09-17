@@ -5,6 +5,7 @@ import { getGuestSpotifyAccessToken } from '@/lib/spotifyAuth';
 export async function GET(req: NextRequest) {
   const searchParams = req.nextUrl.searchParams;
   const query = searchParams.get('q');
+  // So the same API can be used for both song and artist search bars
   const type = searchParams.get('type');
   const token = await getGuestSpotifyAccessToken();
 
