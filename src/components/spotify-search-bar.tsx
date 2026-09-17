@@ -82,7 +82,7 @@ export default function SpotifySearchBar({ onSongSelected, onArtistSelected }: S
       <form>
         <input
           type="text"
-          placeholder="Search for a song.."
+          placeholder={onSongSelected ? 'Search for a song...' : 'Search for an artist...'}
           value={searchTerm}
           onChange={updateSearchTerm}
         ></input>

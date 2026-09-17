@@ -3,7 +3,7 @@
 }
 
 .vibe {
-    padding: 45px;
+    padding: 25px 45px;
 }
 
 .notes {
@@ -14,4 +14,8 @@
 .section-label {
     margin-bottom: 8px;
     font-weight: 600;
+}
+
+.search-bar-section {
+    padding: 0px 45px 25px;
 }

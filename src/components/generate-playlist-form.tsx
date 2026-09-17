@@ -137,11 +137,10 @@ export default function GeneratePlaylistForm() {
             }
           }} />
       </div>
-      <div>
-        <label>Reference Songs</label>
+      <div className='search-bar-section flex-column'>
+        <label className='section-label'>Reference Songs</label>
         {requestFormData.referenceSongs?.map((item, index) => (
           <div key={index}>
-            {/* Color styling is temporary */}
             <Chip
               label={`${item.title} - ${item.artist}`}
               variant="outlined"
@@ -155,8 +154,8 @@ export default function GeneratePlaylistForm() {
         ))}
         <SpotifySearchBar onSongSelected={handleRefSongSelected} />
       </div>
-      <div>
-        <label>Exclude Artists</label>
+      <div className='search-bar-section flex-column'>
+        <label className='section-label'>Artists to Exclude</label>
         {requestFormData.excludeArtists?.map((item, index) => (
           <div key={index}>
             {/* Color styling is temporary */}
