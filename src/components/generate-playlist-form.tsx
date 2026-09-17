@@ -271,7 +271,7 @@ export default function GeneratePlaylistForm() {
           rows={3}
           maxRows={3}
           onChange={updateFormInput}
-          placeholder='Describe the vibe of the playlist you want to generate'
+          placeholder='Add any additional notes here'
           sx={{
             '& .MuiOutlinedInput-root': {
               color: '#b3b3b3',
