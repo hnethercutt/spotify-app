@@ -4,11 +4,9 @@ export type PlaylistRequest = {
     referenceSongs?: SpotifySong[];
     excludeArtists?: SpotifyArtist[];
     excludeGenres?: string[];
-    popularity: 'mainstream' | 'underground' | 'balanced';
     allowDuplicateArtists: boolean;
     includeReferenceSongs: boolean;
     generateTitleAndDescription: boolean;
-    songCount: number;
 };
 
 export type SpotifySong = {

@@ -15,11 +15,9 @@ export default function GeneratePlaylistForm() {
     referenceSongs: [],
     excludeArtists: [],
     excludeGenres: [],
-    popularity: 'balanced',
     allowDuplicateArtists: true,
     includeReferenceSongs: true,
-    generateTitleAndDescription: true,
-    songCount: 25,
+    generateTitleAndDescription: true
   });
 
   // Will probably condense all of these later
@@ -58,13 +56,6 @@ export default function GeneratePlaylistForm() {
     }));
   };
 
-  const handlePopularitySelected = (e: React.ChangeEvent<HTMLInputElement>, newPopularity: string) => {
-    setRequestFormData(prevRequestFormData => ({
-      ...prevRequestFormData,
-      popularity: newPopularity as PlaylistRequest['popularity']
-    }));
-  };
-
   const handleDupeArtistsSelected = (e: React.ChangeEvent<HTMLInputElement>, value: string) => {
     setRequestFormData(prevRequestFormData => ({
       ...prevRequestFormData,
@@ -83,13 +74,6 @@ export default function GeneratePlaylistForm() {
     setRequestFormData(prevRequestFormData => ({
       ...prevRequestFormData,
       generateTitleAndDescription: value === 'true' ? true : false
-    }));
-  };
-
-  const handleSongCountSelected = (e: SelectChangeEvent<number>) => {
-    setRequestFormData((prevRequestFormData) => ({
-      ...prevRequestFormData,
-      songCount: Number(e.target.value)
     }));
   };
 
@@ -178,55 +162,6 @@ export default function GeneratePlaylistForm() {
       </div>
       <div className='radio-sections'>
         <FormControl>
-          <label className='section-label'>Song Popularity</label>
-          <RadioGroup
-            row
-            aria-labelledby={`${id}-label`}
-            defaultValue="mainstream"
-            name="radio-buttons-group"
-            onChange={handlePopularitySelected}
-          >
-            <FormControlLabel
-              value="mainstream"
-              label="Mainstream"
-              control={
-                <Radio
-                  sx={{
-                    color: '#b3b3b3',
-                    '&.Mui-checked': {
-                      color: '#1ed760'
-                    }
-                  }}
-                />}/>
-            <FormControlLabel
-              value="balanced"
-              label="Balanced"
-              control={
-                <Radio
-                  sx={{
-                    color: '#b3b3b3',
-                    '&.Mui-checked': {
-                      color: '#1ed760'
-                    }
-                  }}
-              />}/>
-            <FormControlLabel
-              value="underground"
-              label="Underground"
-              control={
-                <Radio
-                  sx={{
-                    color: '#b3b3b3',
-                    '&.Mui-checked': {
-                      color: '#1ed760'
-                    }
-                  }}
-                />}/>
-          </RadioGroup>
-        </FormControl>
-      </div>
-      <div className='radio-sections'>
-        <FormControl>
           <label className='section-label'>Allow Duplicate Artists?</label>
           <RadioGroup
             row
@@ -262,43 +197,45 @@ export default function GeneratePlaylistForm() {
           </RadioGroup>
         </FormControl>
       </div>
-      <div className='radio-sections'>
-        <FormControl>
-          <label className='section-label'>Include Reference Songs?</label>
-          <RadioGroup
-            row
-            aria-labelledby={`${id}-label`}
-            defaultValue="true"
-            name="radio-buttons-group"
-            onChange={handleIncludeRefSongsSelected}
-          >
-            <FormControlLabel
-              value="true"
-              label="Yes"
-              control={
-                <Radio
-                  sx={{
-                    color: '#b3b3b3',
-                    '&.Mui-checked': {
-                      color: '#1ed760'
-                    }
-                  }}
-                />}/>
-            <FormControlLabel
-              value="false"
-              label="No"
-              control={
-                <Radio
-                  sx={{
-                    color: '#b3b3b3',
-                    '&.Mui-checked': {
-                      color: '#1ed760'
-                    }
-                  }}
-                />}/>
-          </RadioGroup>
-        </FormControl>
-      </div>
+        {requestFormData.referenceSongs && requestFormData.referenceSongs.length > 0 && (
+          <div className='radio-sections'>
+            <FormControl>
+              <label className='section-label'>Include Reference Songs?</label>
+              <RadioGroup
+                row
+                aria-labelledby={`${id}-label`}
+                defaultValue="true"
+                name="radio-buttons-group"
+                onChange={handleIncludeRefSongsSelected}
+              >
+                <FormControlLabel
+                  value="true"
+                  label="Yes"
+                  control={
+                    <Radio
+                      sx={{
+                        color: '#b3b3b3',
+                        '&.Mui-checked': {
+                          color: '#1ed760'
+                        }
+                      }}
+                    />}/>
+                <FormControlLabel
+                  value="false"
+                  label="No"
+                  control={
+                    <Radio
+                      sx={{
+                        color: '#b3b3b3',
+                        '&.Mui-checked': {
+                          color: '#1ed760'
+                        }
+                      }}
+                    />}/>
+              </RadioGroup>
+            </FormControl>
+          </div>
+        )}
       <div className='radio-sections'>
         <FormControl>
           <label className='section-label'>Generate Title and Description?</label>
@@ -334,57 +271,6 @@ export default function GeneratePlaylistForm() {
                   }}
                 />}/>
           </RadioGroup>
-        </FormControl>
-      </div>
-      <div className='song-count flex-column'>
-        <label className='section-label'>Number of songs to add</label>
-        <FormControl sx={{
-          '& .MuiSelect-select': {
-            color: '#b3b3b3'
-          },
-          '& .MuiSelect-icon': {
-            color: '#1ed760'
-          },
-          '& .MuiOutlinedInput-root': {
-            color: '#b3b3b3',
-            '& fieldset': {
-              borderColor: '#b3b3b3'
-            },
-            '&:hover fieldset': {
-              borderColor: '#1ed760'
-            },
-            '&.Mui-focused fieldset': {
-              borderColor: '#1ed760',
-              borderWidth: '2px'
-            }
-          }
-        }}>
-          {/* Might change to an input later */}
-          <Select
-            value={requestFormData.songCount}
-            onChange={handleSongCountSelected}
-          >
-            <MenuItem value={25}>25</MenuItem>
-            <MenuItem value={25}>50</MenuItem>
-            <MenuItem value={25}>75</MenuItem>
-            <MenuItem value={25}>100</MenuItem>
-            <MenuItem value={25}>125</MenuItem>
-            <MenuItem value={25}>150</MenuItem>
-            <MenuItem value={25}>175</MenuItem>
-            <MenuItem value={25}>200</MenuItem>
-            <MenuItem value={25}>225</MenuItem>
-            <MenuItem value={25}>250</MenuItem>
-            <MenuItem value={25}>275</MenuItem>
-            <MenuItem value={25}>300</MenuItem>
-            <MenuItem value={25}>325</MenuItem>
-            <MenuItem value={25}>350</MenuItem>
-            <MenuItem value={25}>375</MenuItem>
-            <MenuItem value={25}>400</MenuItem>
-            <MenuItem value={25}>425</MenuItem>
-            <MenuItem value={25}>450</MenuItem>
-            <MenuItem value={25}>475</MenuItem>
-            <MenuItem value={25}>500</MenuItem>
-          </Select>
         </FormControl>
       </div>
       <div className='notes flex-column'>

@@ -1,11 +1,5 @@
 import { PlaylistRequest } from '@/types/playlist';
 
-const popularityDescriptions = {
-  mainstream: 'Favor recognizable artists.',
-  underground: 'Avoid any song by heavily mainstream or overplayed artists.',
-  balanced: 'Provide an equal mix of popular artists and lesser-known ones.',
-};
-
 export function generatePlaylistPrompt(data: PlaylistRequest) {
   return `
         You are an expert music curator whose job is to design and generate a playlist that reflects the user's requested vibe while respecting all constraints and preferences.
@@ -30,7 +24,7 @@ export function generatePlaylistPrompt(data: PlaylistRequest) {
         ${data.referenceSongs?.length ? data.referenceSongs.map((song) => `- ${song.title} by ${song.artist}`).join('\n') : 'None'}
 
         FILTERS:
-        - Duplicate artists allowed: ${data.allowDuplicateArtists ? 'Yes' : 'No'}
+        - Duplicate artists allowed: ${data.allowDuplicateArtists ? 'Yes' : 'No'} (If no, DO NOT under ANY circumstance include an artist more than once)
         - Include reference songs: ${data.includeReferenceSongs ? 'Yes' : 'No'}
         - Artists and genres to COMPLETELY EXCLUDE:
         -- Artists: ${data.excludeArtists?.join(', ') || 'None'}
@@ -39,15 +33,16 @@ export function generatePlaylistPrompt(data: PlaylistRequest) {
         -- If a song matches an excluded artist or genre, it is invalid regardless of fit and should be ignored
 
         OPTIONS:
-        - Popularity preference: ${popularityDescriptions[data.popularity]}
+        - Popularity: Provide an equal mix of popular artists and lesser-known ones. Avoid making the playlist generic/full of very mainstream artists and their biggest hits.
         - Playlist title & description: ${
           data.generateTitleAndDescription ? `Generate both a playlist title and a short description (1-2 sentences) that reflects the vibe` : `Return empty strings for playlistTitle and playlistDescription`
         }
 
         RULES:
-        - Return exactly ${data.songCount} songs. No more, no less.
+        - Return exactly 50 songs. No more, no less.
         - When using reference songs, focus on song-level matching, not artist-level matching.
         - Use only verified artists and songs
+        - Use only songs that are on spotify
         - Each song must include BOTH title and artist
         - Do not include duplicate songs
         - Only include covers or remixes of songs if they fit the vibe but the original versions do not.
