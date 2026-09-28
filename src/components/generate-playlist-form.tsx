@@ -122,7 +122,7 @@ export default function GeneratePlaylistForm() {
           }} />
       </div>
       <div className='search-bar-section flex-column'>
-        <label className='section-label'>Reference Songs</label>
+        <label className='section-label'>Reference Songs (Optional)</label>
         {requestFormData.referenceSongs?.map((item, index) => (
           <div key={index}>
             <Chip
@@ -139,7 +139,7 @@ export default function GeneratePlaylistForm() {
         <SpotifySearchBar onSongSelected={handleRefSongSelected} />
       </div>
       <div className='search-bar-section flex-column'>
-        <label className='section-label'>Artists to Exclude</label>
+        <label className='section-label'>Artists to Exclude (Optional)</label>
         {requestFormData.excludeArtists?.map((item, index) => (
           <div key={index}>
             {/* Color styling is temporary */}
@@ -157,12 +157,12 @@ export default function GeneratePlaylistForm() {
         <SpotifySearchBar onArtistSelected={handleExcludeArtistSelected} />
       </div>
       <div className='exclude-genre flex-column'>
-        <label className='section-label'>Genres to Exclude</label>
+        <label className='section-label'>Genres to Exclude (Optional)</label>
         <GenreSelector onGenresSelected={handleExcludeGenresSelected} />
       </div>
       <div className='radio-sections'>
         <FormControl>
-          <label className='section-label'>Allow Duplicate Artists?</label>
+          <label className='section-label'>Allow an artist to appear more than once?</label>
           <RadioGroup
             row
             aria-labelledby={`${id}-label`}
@@ -238,7 +238,7 @@ export default function GeneratePlaylistForm() {
         )}
       <div className='radio-sections'>
         <FormControl>
-          <label className='section-label'>Generate Title and Description?</label>
+          <label className='section-label'>Generate title and description?</label>
           <RadioGroup
             row
             aria-labelledby={`${id}-label`}
@@ -274,7 +274,7 @@ export default function GeneratePlaylistForm() {
         </FormControl>
       </div>
       <div className='notes flex-column'>
-        <label className='section-label'>Additional Notes</label>
+        <label className='section-label'>Additional Notes (Optional)</label>
         <TextField
           name='notes'
           multiline
