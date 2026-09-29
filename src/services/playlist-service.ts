@@ -1,13 +1,14 @@
 import { PlaylistRequest, SpotifySong, SpotifyArtist } from "@/types/playlist";
 import _ from 'lodash';
 
-export async function generatePlaylist(requestData: PlaylistRequest) {
+export async function generatePlaylist(requestData: PlaylistRequest): Promise<string> {
     const res = await fetch('/api/generate', {
         method: 'POST',
         body: JSON.stringify({ prompt: requestData }),
     });
     // Don't need to do anything with the result currently
     const result = await res.json();
+    return result.playlistUrl;
 }
 
 // For the autocomplete song search bar
@@ -55,4 +56,12 @@ export async function fetchArtistSearchResults(searchTerm: string): Promise<Arra
     });
 
     return spotifyArtists;
+}
+
+export async function fetchSpotifyPlaylist(playlistUrl: string): Promise<string> {
+    const response = await fetch(`https://open.spotify.com/oembed?url=${playlistUrl}`);
+
+    const data = await response.json();
+
+    return data.html;
 }

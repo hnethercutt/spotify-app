@@ -1,5 +1,6 @@
 'use client';
 import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 import SpotifySearchBar from './spotify-search-bar';
 import GenreSelector from './genre-selector';
 import type { PlaylistRequest, SpotifySong, SpotifyArtist } from '@/types/playlist';
@@ -77,9 +78,15 @@ export default function GeneratePlaylistForm() {
     }));
   };
 
+  const router = useRouter();
+
   const generateBtnClicked = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    generatePlaylist(requestFormData);
+    generatePlaylist(requestFormData).then(function(_playlistUrl) {
+      let params = new URLSearchParams();
+      params.set('playlistUrl', `${_playlistUrl}`);
+      router.push(`/success?${params.toString()}`);
+    });
   };
 
   const updateFormInput = (e: React.ChangeEvent<HTMLInputElement>) => {
