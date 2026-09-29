@@ -29,8 +29,7 @@ body {
 }
 
 a {
-  color: inherit;
-  text-decoration: none;
+  color: var(--spotify-green);
 }
 
 button {

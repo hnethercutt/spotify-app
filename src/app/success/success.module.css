@@ -1,0 +1,13 @@
+.container {
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+}
+
+.container div {
+    margin: 12px;
+}
+
+.embed {
+    width: 50%;
+}

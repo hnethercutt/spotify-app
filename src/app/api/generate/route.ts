@@ -20,13 +20,17 @@ export async function POST(req: NextRequest) {
     // Playlist title, description and list of songs
     const playlist = JSON.parse(response.text ?? '');
     // Playlist is initially empty, so we need the id in order to add songs to it
-    const spotifyPlaylistId = await createSpotifyPlaylist(playlist);
+    const playlistResp = await createSpotifyPlaylist(playlist);
+    let spotifyPlaylistId = playlistResp.id;
+    let spotifyPlaylistUrl = playlistResp.external_urls.spotify;
+
     await addSongsToPlaylist(playlist, spotifyPlaylistId);
 
     // Next requires a return
     return NextResponse.json({
       playlistTitle: playlist.playlistTitle,
-      playlistDescription: playlist.playlistDescription
+      playlistDescription: playlist.playlistDescription,
+      playlistUrl: spotifyPlaylistUrl
     });
   } catch (err) {
     return NextResponse.json({ error: err });

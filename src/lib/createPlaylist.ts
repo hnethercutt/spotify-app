@@ -22,7 +22,7 @@ export async function createSpotifyPlaylist(playlist: PlaylistItems) {
 
     const data = await response.json();
 
-    return data.id;
+    return data;
 }
 
 // Specifically for searching with the AI generated list of songs
